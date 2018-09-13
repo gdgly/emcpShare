@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:task="http://www.springframework.org/schema/task"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd"
+     default-autowire="byName">
+	<context:annotation-config/>
+	<!-- <context:component-scan base-package="com.holley.emcpshare.service"/> -->
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	<!-- 导入属性配置文件 -->
+	<!-- <context:property-placeholder location="classpath:jdbc.properties" /> -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>
+                <value>classpath*:jdbc.properties</value>
+               <!--  <value>classpath*:activeMq.properties</value> -->
+            </list>  
+        </property> 
+		<property name="propertiesPersister">
+			<bean class="com.holley.platform.common.util.PropertiesPersist" />
+		</property> 
+        <property name="ignoreUnresolvablePlaceholders" value="true" />   
+    </bean>      
+
+	<!-- 数据库的配置 ,dbcp连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+	    <property name="driverClassName">
+	      <value>${jdbc.driverClassName}</value>  
+	   </property>
+	    <property name="url">
+	      <value>${jdbc.url}</value>  
+	   </property>
+	    <property name="username">
+	      <value>${jdbc.username}</value>  
+	   </property>
+	    <property name="password">
+	      <value>${jdbc.password}</value>  
+	   </property>
+	   <property name="maxActive"><value>${dbcp.maxActive}</value></property>  
+       <property name="maxIdle"><value>${dbcp.maxIdle}</value></property>  
+       <property name="maxWait"><value>${dbcp.maxWait}</value></property>	 
+       <property name="minIdle"><value>${dbcp.minIdle}</value></property>
+                 
+       <!--removeAbandoned: 是否自动回收超时连接-->  
+	   <property name="removeAbandoned" value="true"/>
+	   <!--removeAbandonedTimeout: 超时时间(以秒数为单位)-->  
+	   <property name="removeAbandonedTimeout" value="180"/>  
+	   <property name="validationQuery">  
+			<value>select now()</value>  
+	   </property>  	     
+	</bean>	
+	<bean id="commForThird" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="${rmi.serviceUrl}" />
+		<property name="serviceInterface" value="com.holley.emcp.dcs.service.ICommForThird" />
+		<!-- 连接出错时自动重连 -->
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<!-- 不在容器启动的时候创建与Server端的连接 -->
+		<property name="lookupStubOnStartup" value="false" />
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:/mybatis/sqlMapConfig_${DBProp}.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>	
+
+	<!-- 配置事务，开启spring的事务管理-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="getPage" propagation="REQUIRED" />
+			<tx:method name="makePresetCard" propagation="REQUIRED" />
+			<tx:method name="openAccount" propagation="REQUIRED" />
+			<tx:method name="buyEnergy" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="NOT_SUPPORTED" read-only="true"/>
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="allManagerMethod"
+			expression="execution(* com.holley.*.service.*.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" />
+	</aop:config>
+</beans>

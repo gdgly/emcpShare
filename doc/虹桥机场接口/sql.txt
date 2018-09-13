@@ -1,0 +1,27 @@
+select 
+pointCommparam.COMMADDR,
+pointBm.DATATIME,
+pointBm.TARRIFTYPEID,
+pointBm.ZYBM,
+pointBm.FYBM,
+pointSsl.PF 
+from obj_point point
+LEFT JOIN
+dat_power_bm pointBm
+ON
+point.POINTID = pointBm.POINTID
+LEFT JOIN
+dat_power_ssl pointSsl
+ON
+point.POINTID = pointSsl.POINTID
+LEFT JOIN
+obj_point_commparam pointCommparam
+ON
+point.POINTID = pointCommparam.POINTID
+WHERE
+pointBm.DATATIME = '2015-05-20 00:00:00'
+AND
+pointSsl.DATATIME = '2015-05-20 00:00:00'
+AND
+point.EID = 2
+

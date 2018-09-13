@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.DatPowerBmRealMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.DatPowerBmReal" >
+    <id column="PHASETYPE" property="phasetype" jdbcType="DECIMAL" />
+    <id column="POINTID" property="pointid" jdbcType="DECIMAL" />
+    <id column="TARRIFTYPEID" property="tarriftypeid" jdbcType="DECIMAL" />
+    <result column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <result column="ZYBM" property="zybm" jdbcType="DECIMAL" />
+    <result column="FYBM" property="fybm" jdbcType="DECIMAL" />
+    <result column="ZHYBM" property="zhybm" jdbcType="DECIMAL" />
+    <result column="ZWBM" property="zwbm" jdbcType="DECIMAL" />
+    <result column="FWBM" property="fwbm" jdbcType="DECIMAL" />
+    <result column="ZHWBM" property="zhwbm" jdbcType="DECIMAL" />
+    <result column="XX1BM" property="xx1bm" jdbcType="DECIMAL" />
+    <result column="XX2BM" property="xx2bm" jdbcType="DECIMAL" />
+    <result column="XX3BM" property="xx3bm" jdbcType="DECIMAL" />
+    <result column="XX4BM" property="xx4bm" jdbcType="DECIMAL" />
+    <result column="ZYPROP" property="zyprop" jdbcType="DECIMAL" />
+    <result column="FYPROP" property="fyprop" jdbcType="DECIMAL" />
+    <result column="ZWPROP" property="zwprop" jdbcType="DECIMAL" />
+    <result column="FWPROP" property="fwprop" jdbcType="DECIMAL" />
+    <result column="XX1PROP" property="xx1prop" jdbcType="DECIMAL" />
+    <result column="XX2PROP" property="xx2prop" jdbcType="DECIMAL" />
+    <result column="XX3PROP" property="xx3prop" jdbcType="DECIMAL" />
+    <result column="XX4PROP" property="xx4prop" jdbcType="DECIMAL" />
+    <result column="OLDDATATIME" property="olddatatime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PHASETYPE, POINTID, TARRIFTYPEID, DATATIME, ZYBM, FYBM, ZHYBM, ZWBM, FWBM, ZHWBM, 
+    XX1BM, XX2BM, XX3BM, XX4BM, ZYPROP, FYPROP, ZWPROP, FWPROP, XX1PROP, XX2PROP, XX3PROP, 
+    XX4PROP, OLDDATATIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatPowerBmRealExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dat_power_bm_real
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatPowerBmRealKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from dat_power_bm_real
+    where PHASETYPE = #{phasetype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.DatPowerBmRealKey" >
+    delete from dat_power_bm_real
+    where PHASETYPE = #{phasetype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.DatPowerBmRealExample" >
+    delete from dat_power_bm_real
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.DatPowerBmReal" >
+    insert into dat_power_bm_real (PHASETYPE, POINTID, TARRIFTYPEID, 
+      DATATIME, ZYBM, FYBM, 
+      ZHYBM, ZWBM, FWBM, 
+      ZHWBM, XX1BM, XX2BM, 
+      XX3BM, XX4BM, ZYPROP, 
+      FYPROP, ZWPROP, FWPROP, 
+      XX1PROP, XX2PROP, XX3PROP, 
+      XX4PROP, OLDDATATIME)
+    values (#{phasetype,jdbcType=DECIMAL}, #{pointid,jdbcType=DECIMAL}, #{tarriftypeid,jdbcType=DECIMAL}, 
+      #{datatime,jdbcType=TIMESTAMP}, #{zybm,jdbcType=DECIMAL}, #{fybm,jdbcType=DECIMAL}, 
+      #{zhybm,jdbcType=DECIMAL}, #{zwbm,jdbcType=DECIMAL}, #{fwbm,jdbcType=DECIMAL}, 
+      #{zhwbm,jdbcType=DECIMAL}, #{xx1bm,jdbcType=DECIMAL}, #{xx2bm,jdbcType=DECIMAL}, 
+      #{xx3bm,jdbcType=DECIMAL}, #{xx4bm,jdbcType=DECIMAL}, #{zyprop,jdbcType=DECIMAL}, 
+      #{fyprop,jdbcType=DECIMAL}, #{zwprop,jdbcType=DECIMAL}, #{fwprop,jdbcType=DECIMAL}, 
+      #{xx1prop,jdbcType=DECIMAL}, #{xx2prop,jdbcType=DECIMAL}, #{xx3prop,jdbcType=DECIMAL}, 
+      #{xx4prop,jdbcType=DECIMAL}, #{olddatatime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.DatPowerBmReal" >
+    insert into dat_power_bm_real
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phasetype != null" >
+        PHASETYPE,
+      </if>
+      <if test="pointid != null" >
+        POINTID,
+      </if>
+      <if test="tarriftypeid != null" >
+        TARRIFTYPEID,
+      </if>
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="zybm != null" >
+        ZYBM,
+      </if>
+      <if test="fybm != null" >
+        FYBM,
+      </if>
+      <if test="zhybm != null" >
+        ZHYBM,
+      </if>
+      <if test="zwbm != null" >
+        ZWBM,
+      </if>
+      <if test="fwbm != null" >
+        FWBM,
+      </if>
+      <if test="zhwbm != null" >
+        ZHWBM,
+      </if>
+      <if test="xx1bm != null" >
+        XX1BM,
+      </if>
+      <if test="xx2bm != null" >
+        XX2BM,
+      </if>
+      <if test="xx3bm != null" >
+        XX3BM,
+      </if>
+      <if test="xx4bm != null" >
+        XX4BM,
+      </if>
+      <if test="zyprop != null" >
+        ZYPROP,
+      </if>
+      <if test="fyprop != null" >
+        FYPROP,
+      </if>
+      <if test="zwprop != null" >
+        ZWPROP,
+      </if>
+      <if test="fwprop != null" >
+        FWPROP,
+      </if>
+      <if test="xx1prop != null" >
+        XX1PROP,
+      </if>
+      <if test="xx2prop != null" >
+        XX2PROP,
+      </if>
+      <if test="xx3prop != null" >
+        XX3PROP,
+      </if>
+      <if test="xx4prop != null" >
+        XX4PROP,
+      </if>
+      <if test="olddatatime != null" >
+        OLDDATATIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phasetype != null" >
+        #{phasetype,jdbcType=DECIMAL},
+      </if>
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="tarriftypeid != null" >
+        #{tarriftypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zybm != null" >
+        #{zybm,jdbcType=DECIMAL},
+      </if>
+      <if test="fybm != null" >
+        #{fybm,jdbcType=DECIMAL},
+      </if>
+      <if test="zhybm != null" >
+        #{zhybm,jdbcType=DECIMAL},
+      </if>
+      <if test="zwbm != null" >
+        #{zwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="fwbm != null" >
+        #{fwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="zhwbm != null" >
+        #{zhwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx1bm != null" >
+        #{xx1bm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx2bm != null" >
+        #{xx2bm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx3bm != null" >
+        #{xx3bm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx4bm != null" >
+        #{xx4bm,jdbcType=DECIMAL},
+      </if>
+      <if test="zyprop != null" >
+        #{zyprop,jdbcType=DECIMAL},
+      </if>
+      <if test="fyprop != null" >
+        #{fyprop,jdbcType=DECIMAL},
+      </if>
+      <if test="zwprop != null" >
+        #{zwprop,jdbcType=DECIMAL},
+      </if>
+      <if test="fwprop != null" >
+        #{fwprop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx1prop != null" >
+        #{xx1prop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx2prop != null" >
+        #{xx2prop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx3prop != null" >
+        #{xx3prop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx4prop != null" >
+        #{xx4prop,jdbcType=DECIMAL},
+      </if>
+      <if test="olddatatime != null" >
+        #{olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.DatPowerBmRealExample" resultType="java.lang.Integer" >
+    select count(*) from dat_power_bm_real
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dat_power_bm_real
+    <set >
+      <if test="record.phasetype != null" >
+        PHASETYPE = #{record.phasetype,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pointid != null" >
+        POINTID = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tarriftypeid != null" >
+        TARRIFTYPEID = #{record.tarriftypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zybm != null" >
+        ZYBM = #{record.zybm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fybm != null" >
+        FYBM = #{record.fybm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zhybm != null" >
+        ZHYBM = #{record.zhybm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zwbm != null" >
+        ZWBM = #{record.zwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fwbm != null" >
+        FWBM = #{record.fwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zhwbm != null" >
+        ZHWBM = #{record.zhwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx1bm != null" >
+        XX1BM = #{record.xx1bm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx2bm != null" >
+        XX2BM = #{record.xx2bm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx3bm != null" >
+        XX3BM = #{record.xx3bm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx4bm != null" >
+        XX4BM = #{record.xx4bm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zyprop != null" >
+        ZYPROP = #{record.zyprop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fyprop != null" >
+        FYPROP = #{record.fyprop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.zwprop != null" >
+        ZWPROP = #{record.zwprop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fwprop != null" >
+        FWPROP = #{record.fwprop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx1prop != null" >
+        XX1PROP = #{record.xx1prop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx2prop != null" >
+        XX2PROP = #{record.xx2prop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx3prop != null" >
+        XX3PROP = #{record.xx3prop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xx4prop != null" >
+        XX4PROP = #{record.xx4prop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.olddatatime != null" >
+        OLDDATATIME = #{record.olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dat_power_bm_real
+    set PHASETYPE = #{record.phasetype,jdbcType=DECIMAL},
+      POINTID = #{record.pointid,jdbcType=DECIMAL},
+      TARRIFTYPEID = #{record.tarriftypeid,jdbcType=DECIMAL},
+      DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      ZYBM = #{record.zybm,jdbcType=DECIMAL},
+      FYBM = #{record.fybm,jdbcType=DECIMAL},
+      ZHYBM = #{record.zhybm,jdbcType=DECIMAL},
+      ZWBM = #{record.zwbm,jdbcType=DECIMAL},
+      FWBM = #{record.fwbm,jdbcType=DECIMAL},
+      ZHWBM = #{record.zhwbm,jdbcType=DECIMAL},
+      XX1BM = #{record.xx1bm,jdbcType=DECIMAL},
+      XX2BM = #{record.xx2bm,jdbcType=DECIMAL},
+      XX3BM = #{record.xx3bm,jdbcType=DECIMAL},
+      XX4BM = #{record.xx4bm,jdbcType=DECIMAL},
+      ZYPROP = #{record.zyprop,jdbcType=DECIMAL},
+      FYPROP = #{record.fyprop,jdbcType=DECIMAL},
+      ZWPROP = #{record.zwprop,jdbcType=DECIMAL},
+      FWPROP = #{record.fwprop,jdbcType=DECIMAL},
+      XX1PROP = #{record.xx1prop,jdbcType=DECIMAL},
+      XX2PROP = #{record.xx2prop,jdbcType=DECIMAL},
+      XX3PROP = #{record.xx3prop,jdbcType=DECIMAL},
+      XX4PROP = #{record.xx4prop,jdbcType=DECIMAL},
+      OLDDATATIME = #{record.olddatatime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.DatPowerBmReal" >
+    update dat_power_bm_real
+    <set >
+      <if test="datatime != null" >
+        DATATIME = #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zybm != null" >
+        ZYBM = #{zybm,jdbcType=DECIMAL},
+      </if>
+      <if test="fybm != null" >
+        FYBM = #{fybm,jdbcType=DECIMAL},
+      </if>
+      <if test="zhybm != null" >
+        ZHYBM = #{zhybm,jdbcType=DECIMAL},
+      </if>
+      <if test="zwbm != null" >
+        ZWBM = #{zwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="fwbm != null" >
+        FWBM = #{fwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="zhwbm != null" >
+        ZHWBM = #{zhwbm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx1bm != null" >
+        XX1BM = #{xx1bm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx2bm != null" >
+        XX2BM = #{xx2bm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx3bm != null" >
+        XX3BM = #{xx3bm,jdbcType=DECIMAL},
+      </if>
+      <if test="xx4bm != null" >
+        XX4BM = #{xx4bm,jdbcType=DECIMAL},
+      </if>
+      <if test="zyprop != null" >
+        ZYPROP = #{zyprop,jdbcType=DECIMAL},
+      </if>
+      <if test="fyprop != null" >
+        FYPROP = #{fyprop,jdbcType=DECIMAL},
+      </if>
+      <if test="zwprop != null" >
+        ZWPROP = #{zwprop,jdbcType=DECIMAL},
+      </if>
+      <if test="fwprop != null" >
+        FWPROP = #{fwprop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx1prop != null" >
+        XX1PROP = #{xx1prop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx2prop != null" >
+        XX2PROP = #{xx2prop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx3prop != null" >
+        XX3PROP = #{xx3prop,jdbcType=DECIMAL},
+      </if>
+      <if test="xx4prop != null" >
+        XX4PROP = #{xx4prop,jdbcType=DECIMAL},
+      </if>
+      <if test="olddatatime != null" >
+        OLDDATATIME = #{olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where PHASETYPE = #{phasetype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.DatPowerBmReal" >
+    update dat_power_bm_real
+    set DATATIME = #{datatime,jdbcType=TIMESTAMP},
+      ZYBM = #{zybm,jdbcType=DECIMAL},
+      FYBM = #{fybm,jdbcType=DECIMAL},
+      ZHYBM = #{zhybm,jdbcType=DECIMAL},
+      ZWBM = #{zwbm,jdbcType=DECIMAL},
+      FWBM = #{fwbm,jdbcType=DECIMAL},
+      ZHWBM = #{zhwbm,jdbcType=DECIMAL},
+      XX1BM = #{xx1bm,jdbcType=DECIMAL},
+      XX2BM = #{xx2bm,jdbcType=DECIMAL},
+      XX3BM = #{xx3bm,jdbcType=DECIMAL},
+      XX4BM = #{xx4bm,jdbcType=DECIMAL},
+      ZYPROP = #{zyprop,jdbcType=DECIMAL},
+      FYPROP = #{fyprop,jdbcType=DECIMAL},
+      ZWPROP = #{zwprop,jdbcType=DECIMAL},
+      FWPROP = #{fwprop,jdbcType=DECIMAL},
+      XX1PROP = #{xx1prop,jdbcType=DECIMAL},
+      XX2PROP = #{xx2prop,jdbcType=DECIMAL},
+      XX3PROP = #{xx3prop,jdbcType=DECIMAL},
+      XX4PROP = #{xx4prop,jdbcType=DECIMAL},
+      OLDDATATIME = #{olddatatime,jdbcType=TIMESTAMP}
+    where PHASETYPE = #{phasetype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectLastPowerBmBatch" resultType="com.holley.emcpshare.model.def.HistoryElectricityInfo">
+  	SELECT 
+  	commparam.COMMADDR pointId,bmReal.ZYBM bm,bmReal.DATATIME dataTime 
+  	FROM dat_power_bm_real bmReal 
+  	LEFT JOIN obj_point point
+	ON bmReal.POINTID = point.POINTID
+	LEFT JOIN obj_point_commparam commparam
+	ON bmReal.POINTID = commparam.POINTID
+	WHERE point.EID=#{eid}
+	AND bmReal.PHASETYPE=0
+	AND bmReal.TARRIFTYPEID=0
+	AND point.ENERGYTYPEID=1
+	AND point.STATUS=1
+  </select>
+  <!-- 国剧大数据接口 -->
+  <select id="selectGjRealPowerBm" resultType="com.holley.emcpshare.model.def.GuoJiuPowerBmVO">
+  	SELECT commparam.COMMADDR pointId,bmReal.ZYBM readingPower,bmReal.DATATIME dataTime,
+  	point.ADDR address,point.NAME name,bmReal.TARRIFTYPEID tag
+  	FROM dat_power_bm_real bmReal,obj_point point,obj_point_commparam commparam,
+	(
+	SELECT * FROM view_point 
+	WHERE 
+	objid=(
+	SELECT SUBEUUID 
+	FROM obj_subeuu
+	WHERE OWNERTYPE=11 
+	AND eid=#{eid} 
+	AND NAME=#{organizationCode}
+	) 
+	AND objtype=12
+	) t
+	WHERE
+	bmReal.POINTID = point.POINTID
+	AND
+	bmReal.POINTID = commparam.POINTID
+	AND
+	bmReal.POINTID=t.pointid
+	AND
+	bmReal.PHASETYPE=0
+	AND
+	point.ENERGYTYPEID=1
+	AND
+	point.STATUS=1
+	AND
+	commparam.COMMADDR != ''
+  </select>
+</mapper>

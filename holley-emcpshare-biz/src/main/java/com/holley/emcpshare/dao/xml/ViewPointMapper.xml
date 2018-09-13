@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.ViewPointMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.ViewPoint" >
+    <id column="objid" property="objid" jdbcType="DECIMAL" />
+    <id column="objtype" property="objtype" jdbcType="DECIMAL" />
+    <id column="pointid" property="pointid" jdbcType="DECIMAL" />
+    <result column="objname" property="objname" jdbcType="VARCHAR" />
+    <result column="ownername" property="ownername" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    objid, objtype, pointid, objname, ownername
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.ViewPointExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from view_point
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.ViewPointKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from view_point
+    where objid = #{objid,jdbcType=DECIMAL}
+      and objtype = #{objtype,jdbcType=DECIMAL}
+      and pointid = #{pointid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.ViewPointKey" >
+    delete from view_point
+    where objid = #{objid,jdbcType=DECIMAL}
+      and objtype = #{objtype,jdbcType=DECIMAL}
+      and pointid = #{pointid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.ViewPointExample" >
+    delete from view_point
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.ViewPoint" >
+    insert into view_point (objid, objtype, pointid, 
+      objname, ownername)
+    values (#{objid,jdbcType=DECIMAL}, #{objtype,jdbcType=DECIMAL}, #{pointid,jdbcType=DECIMAL}, 
+      #{objname,jdbcType=VARCHAR}, #{ownername,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.ViewPoint" >
+    insert into view_point
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        objid,
+      </if>
+      <if test="objtype != null" >
+        objtype,
+      </if>
+      <if test="pointid != null" >
+        pointid,
+      </if>
+      <if test="objname != null" >
+        objname,
+      </if>
+      <if test="ownername != null" >
+        ownername,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        #{objid,jdbcType=DECIMAL},
+      </if>
+      <if test="objtype != null" >
+        #{objtype,jdbcType=DECIMAL},
+      </if>
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="objname != null" >
+        #{objname,jdbcType=VARCHAR},
+      </if>
+      <if test="ownername != null" >
+        #{ownername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.ViewPointExample" resultType="java.lang.Integer" >
+    select count(*) from view_point
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update view_point
+    <set >
+      <if test="record.objid != null" >
+        objid = #{record.objid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.objtype != null" >
+        objtype = #{record.objtype,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pointid != null" >
+        pointid = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.objname != null" >
+        objname = #{record.objname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownername != null" >
+        ownername = #{record.ownername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update view_point
+    set objid = #{record.objid,jdbcType=DECIMAL},
+      objtype = #{record.objtype,jdbcType=DECIMAL},
+      pointid = #{record.pointid,jdbcType=DECIMAL},
+      objname = #{record.objname,jdbcType=VARCHAR},
+      ownername = #{record.ownername,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.ViewPoint" >
+    update view_point
+    <set >
+      <if test="objname != null" >
+        objname = #{objname,jdbcType=VARCHAR},
+      </if>
+      <if test="ownername != null" >
+        ownername = #{ownername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where objid = #{objid,jdbcType=DECIMAL}
+      and objtype = #{objtype,jdbcType=DECIMAL}
+      and pointid = #{pointid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.ViewPoint" >
+    update view_point
+    set objname = #{objname,jdbcType=VARCHAR},
+      ownername = #{ownername,jdbcType=VARCHAR}
+    where objid = #{objid,jdbcType=DECIMAL}
+      and objtype = #{objtype,jdbcType=DECIMAL}
+      and pointid = #{pointid,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectPointsByViewPoint" resultType="com.holley.emcpshare.model.def.ViewPointVO">
+  	SELECT vpoint.*,point.NAME pointName,point.ADDR address,commparam.COMMADDR commaddr
+  	FROM view_point vpoint 
+	LEFT JOIN obj_point point
+	ON vpoint.pointid = point.POINTID
+	LEFT JOIN obj_point_commparam commparam
+	ON vpoint.pointid = commparam.POINTID
+	WHERE vpoint.objid=#{uuid}
+	AND vpoint.objtype=#{objtype}
+	<if test="type != null">
+		AND point.ENERGYTYPEID = #{type}
+	</if>
+  </select>
+</mapper>

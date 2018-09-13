@@ -1,0 +1,1303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.PpfCustomerFeeMonthDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.PpfCustomerFeeMonthDetail" >
+    <id column="CUSTOMERID" property="customerid" jdbcType="INTEGER" />
+    <id column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <id column="POINTID" property="pointid" jdbcType="DECIMAL" />
+    <id column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="ENERGYZONG" property="energyzong" jdbcType="DECIMAL" />
+    <result column="ENERGYJIAN" property="energyjian" jdbcType="DECIMAL" />
+    <result column="ENERGYFENG" property="energyfeng" jdbcType="DECIMAL" />
+    <result column="ENERGYPING" property="energyping" jdbcType="DECIMAL" />
+    <result column="ENERGYGU" property="energygu" jdbcType="DECIMAL" />
+    <result column="ENERGYZONGQ" property="energyzongq" jdbcType="DECIMAL" />
+    <result column="ACTUALFEE" property="actualfee" jdbcType="DECIMAL" />
+    <result column="FEE" property="fee" jdbcType="DECIMAL" />
+    <result column="BASEFEE" property="basefee" jdbcType="DECIMAL" />
+    <result column="FUNDFEE" property="fundfee" jdbcType="DECIMAL" />
+    <result column="PFFEE" property="pffee" jdbcType="DECIMAL" />
+    <result column="FUND1" property="fund1" jdbcType="DECIMAL" />
+    <result column="FUND2" property="fund2" jdbcType="DECIMAL" />
+    <result column="FUND3" property="fund3" jdbcType="DECIMAL" />
+    <result column="FUND4" property="fund4" jdbcType="DECIMAL" />
+    <result column="FUND5" property="fund5" jdbcType="DECIMAL" />
+    <result column="FUND6" property="fund6" jdbcType="DECIMAL" />
+    <result column="DEMANDMAX" property="demandmax" jdbcType="DECIMAL" />
+    <result column="CAPABILITY" property="capability" jdbcType="DECIMAL" />
+    <result column="PF" property="pf" jdbcType="DECIMAL" />
+    <result column="TOTALFEE" property="totalfee" jdbcType="DECIMAL" />
+    <result column="PERCENT" property="percent" jdbcType="DECIMAL" />
+    <result column="PRICEID" property="priceid" jdbcType="DECIMAL" />
+    <result column="STARTBMTIME" property="startbmtime" jdbcType="TIMESTAMP" />
+    <result column="STARTBMZONGZY" property="startbmzongzy" jdbcType="DECIMAL" />
+    <result column="STARTBMZONGFY" property="startbmzongfy" jdbcType="DECIMAL" />
+    <result column="STARTBMZONGZW" property="startbmzongzw" jdbcType="DECIMAL" />
+    <result column="STARTBMZONGFW" property="startbmzongfw" jdbcType="DECIMAL" />
+    <result column="STARTBMJIANZY" property="startbmjianzy" jdbcType="DECIMAL" />
+    <result column="STARTBMJIANFY" property="startbmjianfy" jdbcType="DECIMAL" />
+    <result column="STARTBMJIANZW" property="startbmjianzw" jdbcType="DECIMAL" />
+    <result column="STARTBMJIANFW" property="startbmjianfw" jdbcType="DECIMAL" />
+    <result column="STARTBMFENGZY" property="startbmfengzy" jdbcType="DECIMAL" />
+    <result column="STARTBMFENGFY" property="startbmfengfy" jdbcType="DECIMAL" />
+    <result column="STARTBMFENGZW" property="startbmfengzw" jdbcType="DECIMAL" />
+    <result column="STARTBMFENGFW" property="startbmfengfw" jdbcType="DECIMAL" />
+    <result column="STARTBMPINGZY" property="startbmpingzy" jdbcType="DECIMAL" />
+    <result column="STARTBMPINGFY" property="startbmpingfy" jdbcType="DECIMAL" />
+    <result column="STARTBMPINGZW" property="startbmpingzw" jdbcType="DECIMAL" />
+    <result column="STARTBMPINGFW" property="startbmpingfw" jdbcType="DECIMAL" />
+    <result column="STARTBMGUZY" property="startbmguzy" jdbcType="DECIMAL" />
+    <result column="STARTBMGUFY" property="startbmgufy" jdbcType="DECIMAL" />
+    <result column="STARTBMGUZW" property="startbmguzw" jdbcType="DECIMAL" />
+    <result column="STARTBMGUFW" property="startbmgufw" jdbcType="DECIMAL" />
+    <result column="ENDBMTIME" property="endbmtime" jdbcType="TIMESTAMP" />
+    <result column="ENDBMZONGZY" property="endbmzongzy" jdbcType="DECIMAL" />
+    <result column="ENDBMZONGFY" property="endbmzongfy" jdbcType="DECIMAL" />
+    <result column="ENDBMZONGZW" property="endbmzongzw" jdbcType="DECIMAL" />
+    <result column="ENDBMZONGFW" property="endbmzongfw" jdbcType="DECIMAL" />
+    <result column="ENDBMJIANZY" property="endbmjianzy" jdbcType="DECIMAL" />
+    <result column="ENDBMJIANFY" property="endbmjianfy" jdbcType="DECIMAL" />
+    <result column="ENDBMJIANZW" property="endbmjianzw" jdbcType="DECIMAL" />
+    <result column="ENDBMJIANFW" property="endbmjianfw" jdbcType="DECIMAL" />
+    <result column="ENDBMFENGZY" property="endbmfengzy" jdbcType="DECIMAL" />
+    <result column="ENDBMFENGFY" property="endbmfengfy" jdbcType="DECIMAL" />
+    <result column="ENDBMFENGZW" property="endbmfengzw" jdbcType="DECIMAL" />
+    <result column="ENDBMFENGFW" property="endbmfengfw" jdbcType="DECIMAL" />
+    <result column="ENDBMPINGZY" property="endbmpingzy" jdbcType="DECIMAL" />
+    <result column="ENDBMPINGFY" property="endbmpingfy" jdbcType="DECIMAL" />
+    <result column="ENDBMPINGZW" property="endbmpingzw" jdbcType="DECIMAL" />
+    <result column="ENDBMPINGFW" property="endbmpingfw" jdbcType="DECIMAL" />
+    <result column="ENDBMGUZY" property="endbmguzy" jdbcType="DECIMAL" />
+    <result column="ENDBMGUFY" property="endbmgufy" jdbcType="DECIMAL" />
+    <result column="ENDBMGUZW" property="endbmguzw" jdbcType="DECIMAL" />
+    <result column="ENDBMGUFW" property="endbmgufw" jdbcType="DECIMAL" />
+    <result column="RATE" property="rate" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="SMALLINT" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUSTOMERID, DATATIME, POINTID, STARTTIME, ENDTIME, ENERGYZONG, ENERGYJIAN, ENERGYFENG, 
+    ENERGYPING, ENERGYGU, ENERGYZONGQ, ACTUALFEE, FEE, BASEFEE, FUNDFEE, PFFEE, FUND1, 
+    FUND2, FUND3, FUND4, FUND5, FUND6, DEMANDMAX, CAPABILITY, PF, TOTALFEE, PERCENT, 
+    PRICEID, STARTBMTIME, STARTBMZONGZY, STARTBMZONGFY, STARTBMZONGZW, STARTBMZONGFW, 
+    STARTBMJIANZY, STARTBMJIANFY, STARTBMJIANZW, STARTBMJIANFW, STARTBMFENGZY, STARTBMFENGFY, 
+    STARTBMFENGZW, STARTBMFENGFW, STARTBMPINGZY, STARTBMPINGFY, STARTBMPINGZW, STARTBMPINGFW, 
+    STARTBMGUZY, STARTBMGUFY, STARTBMGUZW, STARTBMGUFW, ENDBMTIME, ENDBMZONGZY, ENDBMZONGFY, 
+    ENDBMZONGZW, ENDBMZONGFW, ENDBMJIANZY, ENDBMJIANFY, ENDBMJIANZW, ENDBMJIANFW, ENDBMFENGZY, 
+    ENDBMFENGFY, ENDBMFENGZW, ENDBMFENGFW, ENDBMPINGZY, ENDBMPINGFY, ENDBMPINGZW, ENDBMPINGFW, 
+    ENDBMGUZY, ENDBMGUFY, ENDBMGUZW, ENDBMGUFW, RATE, STATUS, UPDATETIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ppf_customer_fee_month_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetailKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from ppf_customer_fee_month_detail
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and STARTTIME = #{starttime,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetailKey" >
+    delete from ppf_customer_fee_month_detail
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and STARTTIME = #{starttime,jdbcType=TIMESTAMP}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetailExample" >
+    delete from ppf_customer_fee_month_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetail" >
+    insert into ppf_customer_fee_month_detail (CUSTOMERID, DATATIME, POINTID, 
+      STARTTIME, ENDTIME, ENERGYZONG, 
+      ENERGYJIAN, ENERGYFENG, ENERGYPING, 
+      ENERGYGU, ENERGYZONGQ, ACTUALFEE, 
+      FEE, BASEFEE, FUNDFEE, 
+      PFFEE, FUND1, FUND2, 
+      FUND3, FUND4, FUND5, 
+      FUND6, DEMANDMAX, CAPABILITY, 
+      PF, TOTALFEE, PERCENT, 
+      PRICEID, STARTBMTIME, STARTBMZONGZY, 
+      STARTBMZONGFY, STARTBMZONGZW, STARTBMZONGFW, 
+      STARTBMJIANZY, STARTBMJIANFY, STARTBMJIANZW, 
+      STARTBMJIANFW, STARTBMFENGZY, STARTBMFENGFY, 
+      STARTBMFENGZW, STARTBMFENGFW, STARTBMPINGZY, 
+      STARTBMPINGFY, STARTBMPINGZW, STARTBMPINGFW, 
+      STARTBMGUZY, STARTBMGUFY, STARTBMGUZW, 
+      STARTBMGUFW, ENDBMTIME, ENDBMZONGZY, 
+      ENDBMZONGFY, ENDBMZONGZW, ENDBMZONGFW, 
+      ENDBMJIANZY, ENDBMJIANFY, ENDBMJIANZW, 
+      ENDBMJIANFW, ENDBMFENGZY, ENDBMFENGFY, 
+      ENDBMFENGZW, ENDBMFENGFW, ENDBMPINGZY, 
+      ENDBMPINGFY, ENDBMPINGZW, ENDBMPINGFW, 
+      ENDBMGUZY, ENDBMGUFY, ENDBMGUZW, 
+      ENDBMGUFW, RATE, STATUS, 
+      UPDATETIME)
+    values (#{customerid,jdbcType=INTEGER}, #{datatime,jdbcType=TIMESTAMP}, #{pointid,jdbcType=DECIMAL}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{energyzong,jdbcType=DECIMAL}, 
+      #{energyjian,jdbcType=DECIMAL}, #{energyfeng,jdbcType=DECIMAL}, #{energyping,jdbcType=DECIMAL}, 
+      #{energygu,jdbcType=DECIMAL}, #{energyzongq,jdbcType=DECIMAL}, #{actualfee,jdbcType=DECIMAL}, 
+      #{fee,jdbcType=DECIMAL}, #{basefee,jdbcType=DECIMAL}, #{fundfee,jdbcType=DECIMAL}, 
+      #{pffee,jdbcType=DECIMAL}, #{fund1,jdbcType=DECIMAL}, #{fund2,jdbcType=DECIMAL}, 
+      #{fund3,jdbcType=DECIMAL}, #{fund4,jdbcType=DECIMAL}, #{fund5,jdbcType=DECIMAL}, 
+      #{fund6,jdbcType=DECIMAL}, #{demandmax,jdbcType=DECIMAL}, #{capability,jdbcType=DECIMAL}, 
+      #{pf,jdbcType=DECIMAL}, #{totalfee,jdbcType=DECIMAL}, #{percent,jdbcType=DECIMAL}, 
+      #{priceid,jdbcType=DECIMAL}, #{startbmtime,jdbcType=TIMESTAMP}, #{startbmzongzy,jdbcType=DECIMAL}, 
+      #{startbmzongfy,jdbcType=DECIMAL}, #{startbmzongzw,jdbcType=DECIMAL}, #{startbmzongfw,jdbcType=DECIMAL}, 
+      #{startbmjianzy,jdbcType=DECIMAL}, #{startbmjianfy,jdbcType=DECIMAL}, #{startbmjianzw,jdbcType=DECIMAL}, 
+      #{startbmjianfw,jdbcType=DECIMAL}, #{startbmfengzy,jdbcType=DECIMAL}, #{startbmfengfy,jdbcType=DECIMAL}, 
+      #{startbmfengzw,jdbcType=DECIMAL}, #{startbmfengfw,jdbcType=DECIMAL}, #{startbmpingzy,jdbcType=DECIMAL}, 
+      #{startbmpingfy,jdbcType=DECIMAL}, #{startbmpingzw,jdbcType=DECIMAL}, #{startbmpingfw,jdbcType=DECIMAL}, 
+      #{startbmguzy,jdbcType=DECIMAL}, #{startbmgufy,jdbcType=DECIMAL}, #{startbmguzw,jdbcType=DECIMAL}, 
+      #{startbmgufw,jdbcType=DECIMAL}, #{endbmtime,jdbcType=TIMESTAMP}, #{endbmzongzy,jdbcType=DECIMAL}, 
+      #{endbmzongfy,jdbcType=DECIMAL}, #{endbmzongzw,jdbcType=DECIMAL}, #{endbmzongfw,jdbcType=DECIMAL}, 
+      #{endbmjianzy,jdbcType=DECIMAL}, #{endbmjianfy,jdbcType=DECIMAL}, #{endbmjianzw,jdbcType=DECIMAL}, 
+      #{endbmjianfw,jdbcType=DECIMAL}, #{endbmfengzy,jdbcType=DECIMAL}, #{endbmfengfy,jdbcType=DECIMAL}, 
+      #{endbmfengzw,jdbcType=DECIMAL}, #{endbmfengfw,jdbcType=DECIMAL}, #{endbmpingzy,jdbcType=DECIMAL}, 
+      #{endbmpingfy,jdbcType=DECIMAL}, #{endbmpingzw,jdbcType=DECIMAL}, #{endbmpingfw,jdbcType=DECIMAL}, 
+      #{endbmguzy,jdbcType=DECIMAL}, #{endbmgufy,jdbcType=DECIMAL}, #{endbmguzw,jdbcType=DECIMAL}, 
+      #{endbmgufw,jdbcType=DECIMAL}, #{rate,jdbcType=DECIMAL}, #{status,jdbcType=SMALLINT}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetail" >
+    insert into ppf_customer_fee_month_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        CUSTOMERID,
+      </if>
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="pointid != null" >
+        POINTID,
+      </if>
+      <if test="starttime != null" >
+        STARTTIME,
+      </if>
+      <if test="endtime != null" >
+        ENDTIME,
+      </if>
+      <if test="energyzong != null" >
+        ENERGYZONG,
+      </if>
+      <if test="energyjian != null" >
+        ENERGYJIAN,
+      </if>
+      <if test="energyfeng != null" >
+        ENERGYFENG,
+      </if>
+      <if test="energyping != null" >
+        ENERGYPING,
+      </if>
+      <if test="energygu != null" >
+        ENERGYGU,
+      </if>
+      <if test="energyzongq != null" >
+        ENERGYZONGQ,
+      </if>
+      <if test="actualfee != null" >
+        ACTUALFEE,
+      </if>
+      <if test="fee != null" >
+        FEE,
+      </if>
+      <if test="basefee != null" >
+        BASEFEE,
+      </if>
+      <if test="fundfee != null" >
+        FUNDFEE,
+      </if>
+      <if test="pffee != null" >
+        PFFEE,
+      </if>
+      <if test="fund1 != null" >
+        FUND1,
+      </if>
+      <if test="fund2 != null" >
+        FUND2,
+      </if>
+      <if test="fund3 != null" >
+        FUND3,
+      </if>
+      <if test="fund4 != null" >
+        FUND4,
+      </if>
+      <if test="fund5 != null" >
+        FUND5,
+      </if>
+      <if test="fund6 != null" >
+        FUND6,
+      </if>
+      <if test="demandmax != null" >
+        DEMANDMAX,
+      </if>
+      <if test="capability != null" >
+        CAPABILITY,
+      </if>
+      <if test="pf != null" >
+        PF,
+      </if>
+      <if test="totalfee != null" >
+        TOTALFEE,
+      </if>
+      <if test="percent != null" >
+        PERCENT,
+      </if>
+      <if test="priceid != null" >
+        PRICEID,
+      </if>
+      <if test="startbmtime != null" >
+        STARTBMTIME,
+      </if>
+      <if test="startbmzongzy != null" >
+        STARTBMZONGZY,
+      </if>
+      <if test="startbmzongfy != null" >
+        STARTBMZONGFY,
+      </if>
+      <if test="startbmzongzw != null" >
+        STARTBMZONGZW,
+      </if>
+      <if test="startbmzongfw != null" >
+        STARTBMZONGFW,
+      </if>
+      <if test="startbmjianzy != null" >
+        STARTBMJIANZY,
+      </if>
+      <if test="startbmjianfy != null" >
+        STARTBMJIANFY,
+      </if>
+      <if test="startbmjianzw != null" >
+        STARTBMJIANZW,
+      </if>
+      <if test="startbmjianfw != null" >
+        STARTBMJIANFW,
+      </if>
+      <if test="startbmfengzy != null" >
+        STARTBMFENGZY,
+      </if>
+      <if test="startbmfengfy != null" >
+        STARTBMFENGFY,
+      </if>
+      <if test="startbmfengzw != null" >
+        STARTBMFENGZW,
+      </if>
+      <if test="startbmfengfw != null" >
+        STARTBMFENGFW,
+      </if>
+      <if test="startbmpingzy != null" >
+        STARTBMPINGZY,
+      </if>
+      <if test="startbmpingfy != null" >
+        STARTBMPINGFY,
+      </if>
+      <if test="startbmpingzw != null" >
+        STARTBMPINGZW,
+      </if>
+      <if test="startbmpingfw != null" >
+        STARTBMPINGFW,
+      </if>
+      <if test="startbmguzy != null" >
+        STARTBMGUZY,
+      </if>
+      <if test="startbmgufy != null" >
+        STARTBMGUFY,
+      </if>
+      <if test="startbmguzw != null" >
+        STARTBMGUZW,
+      </if>
+      <if test="startbmgufw != null" >
+        STARTBMGUFW,
+      </if>
+      <if test="endbmtime != null" >
+        ENDBMTIME,
+      </if>
+      <if test="endbmzongzy != null" >
+        ENDBMZONGZY,
+      </if>
+      <if test="endbmzongfy != null" >
+        ENDBMZONGFY,
+      </if>
+      <if test="endbmzongzw != null" >
+        ENDBMZONGZW,
+      </if>
+      <if test="endbmzongfw != null" >
+        ENDBMZONGFW,
+      </if>
+      <if test="endbmjianzy != null" >
+        ENDBMJIANZY,
+      </if>
+      <if test="endbmjianfy != null" >
+        ENDBMJIANFY,
+      </if>
+      <if test="endbmjianzw != null" >
+        ENDBMJIANZW,
+      </if>
+      <if test="endbmjianfw != null" >
+        ENDBMJIANFW,
+      </if>
+      <if test="endbmfengzy != null" >
+        ENDBMFENGZY,
+      </if>
+      <if test="endbmfengfy != null" >
+        ENDBMFENGFY,
+      </if>
+      <if test="endbmfengzw != null" >
+        ENDBMFENGZW,
+      </if>
+      <if test="endbmfengfw != null" >
+        ENDBMFENGFW,
+      </if>
+      <if test="endbmpingzy != null" >
+        ENDBMPINGZY,
+      </if>
+      <if test="endbmpingfy != null" >
+        ENDBMPINGFY,
+      </if>
+      <if test="endbmpingzw != null" >
+        ENDBMPINGZW,
+      </if>
+      <if test="endbmpingfw != null" >
+        ENDBMPINGFW,
+      </if>
+      <if test="endbmguzy != null" >
+        ENDBMGUZY,
+      </if>
+      <if test="endbmgufy != null" >
+        ENDBMGUFY,
+      </if>
+      <if test="endbmguzw != null" >
+        ENDBMGUZW,
+      </if>
+      <if test="endbmgufw != null" >
+        ENDBMGUFW,
+      </if>
+      <if test="rate != null" >
+        RATE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="energyzong != null" >
+        #{energyzong,jdbcType=DECIMAL},
+      </if>
+      <if test="energyjian != null" >
+        #{energyjian,jdbcType=DECIMAL},
+      </if>
+      <if test="energyfeng != null" >
+        #{energyfeng,jdbcType=DECIMAL},
+      </if>
+      <if test="energyping != null" >
+        #{energyping,jdbcType=DECIMAL},
+      </if>
+      <if test="energygu != null" >
+        #{energygu,jdbcType=DECIMAL},
+      </if>
+      <if test="energyzongq != null" >
+        #{energyzongq,jdbcType=DECIMAL},
+      </if>
+      <if test="actualfee != null" >
+        #{actualfee,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="basefee != null" >
+        #{basefee,jdbcType=DECIMAL},
+      </if>
+      <if test="fundfee != null" >
+        #{fundfee,jdbcType=DECIMAL},
+      </if>
+      <if test="pffee != null" >
+        #{pffee,jdbcType=DECIMAL},
+      </if>
+      <if test="fund1 != null" >
+        #{fund1,jdbcType=DECIMAL},
+      </if>
+      <if test="fund2 != null" >
+        #{fund2,jdbcType=DECIMAL},
+      </if>
+      <if test="fund3 != null" >
+        #{fund3,jdbcType=DECIMAL},
+      </if>
+      <if test="fund4 != null" >
+        #{fund4,jdbcType=DECIMAL},
+      </if>
+      <if test="fund5 != null" >
+        #{fund5,jdbcType=DECIMAL},
+      </if>
+      <if test="fund6 != null" >
+        #{fund6,jdbcType=DECIMAL},
+      </if>
+      <if test="demandmax != null" >
+        #{demandmax,jdbcType=DECIMAL},
+      </if>
+      <if test="capability != null" >
+        #{capability,jdbcType=DECIMAL},
+      </if>
+      <if test="pf != null" >
+        #{pf,jdbcType=DECIMAL},
+      </if>
+      <if test="totalfee != null" >
+        #{totalfee,jdbcType=DECIMAL},
+      </if>
+      <if test="percent != null" >
+        #{percent,jdbcType=DECIMAL},
+      </if>
+      <if test="priceid != null" >
+        #{priceid,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmtime != null" >
+        #{startbmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startbmzongzy != null" >
+        #{startbmzongzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmzongfy != null" >
+        #{startbmzongfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmzongzw != null" >
+        #{startbmzongzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmzongfw != null" >
+        #{startbmzongfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianzy != null" >
+        #{startbmjianzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianfy != null" >
+        #{startbmjianfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianzw != null" >
+        #{startbmjianzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianfw != null" >
+        #{startbmjianfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengzy != null" >
+        #{startbmfengzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengfy != null" >
+        #{startbmfengfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengzw != null" >
+        #{startbmfengzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengfw != null" >
+        #{startbmfengfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingzy != null" >
+        #{startbmpingzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingfy != null" >
+        #{startbmpingfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingzw != null" >
+        #{startbmpingzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingfw != null" >
+        #{startbmpingfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmguzy != null" >
+        #{startbmguzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmgufy != null" >
+        #{startbmgufy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmguzw != null" >
+        #{startbmguzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmgufw != null" >
+        #{startbmgufw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmtime != null" >
+        #{endbmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endbmzongzy != null" >
+        #{endbmzongzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmzongfy != null" >
+        #{endbmzongfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmzongzw != null" >
+        #{endbmzongzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmzongfw != null" >
+        #{endbmzongfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianzy != null" >
+        #{endbmjianzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianfy != null" >
+        #{endbmjianfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianzw != null" >
+        #{endbmjianzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianfw != null" >
+        #{endbmjianfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengzy != null" >
+        #{endbmfengzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengfy != null" >
+        #{endbmfengfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengzw != null" >
+        #{endbmfengzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengfw != null" >
+        #{endbmfengfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingzy != null" >
+        #{endbmpingzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingfy != null" >
+        #{endbmpingfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingzw != null" >
+        #{endbmpingzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingfw != null" >
+        #{endbmpingfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmguzy != null" >
+        #{endbmguzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmgufy != null" >
+        #{endbmgufy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmguzw != null" >
+        #{endbmguzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmgufw != null" >
+        #{endbmgufw,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetailExample" resultType="java.lang.Integer" >
+    select count(*) from ppf_customer_fee_month_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ppf_customer_fee_month_detail
+    <set >
+      <if test="record.customerid != null" >
+        CUSTOMERID = #{record.customerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pointid != null" >
+        POINTID = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.starttime != null" >
+        STARTTIME = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        ENDTIME = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.energyzong != null" >
+        ENERGYZONG = #{record.energyzong,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyjian != null" >
+        ENERGYJIAN = #{record.energyjian,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyfeng != null" >
+        ENERGYFENG = #{record.energyfeng,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyping != null" >
+        ENERGYPING = #{record.energyping,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energygu != null" >
+        ENERGYGU = #{record.energygu,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyzongq != null" >
+        ENERGYZONGQ = #{record.energyzongq,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actualfee != null" >
+        ACTUALFEE = #{record.actualfee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee != null" >
+        FEE = #{record.fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.basefee != null" >
+        BASEFEE = #{record.basefee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fundfee != null" >
+        FUNDFEE = #{record.fundfee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pffee != null" >
+        PFFEE = #{record.pffee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fund1 != null" >
+        FUND1 = #{record.fund1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fund2 != null" >
+        FUND2 = #{record.fund2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fund3 != null" >
+        FUND3 = #{record.fund3,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fund4 != null" >
+        FUND4 = #{record.fund4,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fund5 != null" >
+        FUND5 = #{record.fund5,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fund6 != null" >
+        FUND6 = #{record.fund6,jdbcType=DECIMAL},
+      </if>
+      <if test="record.demandmax != null" >
+        DEMANDMAX = #{record.demandmax,jdbcType=DECIMAL},
+      </if>
+      <if test="record.capability != null" >
+        CAPABILITY = #{record.capability,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pf != null" >
+        PF = #{record.pf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalfee != null" >
+        TOTALFEE = #{record.totalfee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.percent != null" >
+        PERCENT = #{record.percent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.priceid != null" >
+        PRICEID = #{record.priceid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmtime != null" >
+        STARTBMTIME = #{record.startbmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.startbmzongzy != null" >
+        STARTBMZONGZY = #{record.startbmzongzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmzongfy != null" >
+        STARTBMZONGFY = #{record.startbmzongfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmzongzw != null" >
+        STARTBMZONGZW = #{record.startbmzongzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmzongfw != null" >
+        STARTBMZONGFW = #{record.startbmzongfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmjianzy != null" >
+        STARTBMJIANZY = #{record.startbmjianzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmjianfy != null" >
+        STARTBMJIANFY = #{record.startbmjianfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmjianzw != null" >
+        STARTBMJIANZW = #{record.startbmjianzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmjianfw != null" >
+        STARTBMJIANFW = #{record.startbmjianfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmfengzy != null" >
+        STARTBMFENGZY = #{record.startbmfengzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmfengfy != null" >
+        STARTBMFENGFY = #{record.startbmfengfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmfengzw != null" >
+        STARTBMFENGZW = #{record.startbmfengzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmfengfw != null" >
+        STARTBMFENGFW = #{record.startbmfengfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmpingzy != null" >
+        STARTBMPINGZY = #{record.startbmpingzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmpingfy != null" >
+        STARTBMPINGFY = #{record.startbmpingfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmpingzw != null" >
+        STARTBMPINGZW = #{record.startbmpingzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmpingfw != null" >
+        STARTBMPINGFW = #{record.startbmpingfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmguzy != null" >
+        STARTBMGUZY = #{record.startbmguzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmgufy != null" >
+        STARTBMGUFY = #{record.startbmgufy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmguzw != null" >
+        STARTBMGUZW = #{record.startbmguzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startbmgufw != null" >
+        STARTBMGUFW = #{record.startbmgufw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmtime != null" >
+        ENDBMTIME = #{record.endbmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endbmzongzy != null" >
+        ENDBMZONGZY = #{record.endbmzongzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmzongfy != null" >
+        ENDBMZONGFY = #{record.endbmzongfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmzongzw != null" >
+        ENDBMZONGZW = #{record.endbmzongzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmzongfw != null" >
+        ENDBMZONGFW = #{record.endbmzongfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmjianzy != null" >
+        ENDBMJIANZY = #{record.endbmjianzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmjianfy != null" >
+        ENDBMJIANFY = #{record.endbmjianfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmjianzw != null" >
+        ENDBMJIANZW = #{record.endbmjianzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmjianfw != null" >
+        ENDBMJIANFW = #{record.endbmjianfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmfengzy != null" >
+        ENDBMFENGZY = #{record.endbmfengzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmfengfy != null" >
+        ENDBMFENGFY = #{record.endbmfengfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmfengzw != null" >
+        ENDBMFENGZW = #{record.endbmfengzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmfengfw != null" >
+        ENDBMFENGFW = #{record.endbmfengfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmpingzy != null" >
+        ENDBMPINGZY = #{record.endbmpingzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmpingfy != null" >
+        ENDBMPINGFY = #{record.endbmpingfy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmpingzw != null" >
+        ENDBMPINGZW = #{record.endbmpingzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmpingfw != null" >
+        ENDBMPINGFW = #{record.endbmpingfw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmguzy != null" >
+        ENDBMGUZY = #{record.endbmguzy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmgufy != null" >
+        ENDBMGUFY = #{record.endbmgufy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmguzw != null" >
+        ENDBMGUZW = #{record.endbmguzw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.endbmgufw != null" >
+        ENDBMGUFW = #{record.endbmgufw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rate != null" >
+        RATE = #{record.rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.updatetime != null" >
+        UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ppf_customer_fee_month_detail
+    set CUSTOMERID = #{record.customerid,jdbcType=INTEGER},
+      DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      POINTID = #{record.pointid,jdbcType=DECIMAL},
+      STARTTIME = #{record.starttime,jdbcType=TIMESTAMP},
+      ENDTIME = #{record.endtime,jdbcType=TIMESTAMP},
+      ENERGYZONG = #{record.energyzong,jdbcType=DECIMAL},
+      ENERGYJIAN = #{record.energyjian,jdbcType=DECIMAL},
+      ENERGYFENG = #{record.energyfeng,jdbcType=DECIMAL},
+      ENERGYPING = #{record.energyping,jdbcType=DECIMAL},
+      ENERGYGU = #{record.energygu,jdbcType=DECIMAL},
+      ENERGYZONGQ = #{record.energyzongq,jdbcType=DECIMAL},
+      ACTUALFEE = #{record.actualfee,jdbcType=DECIMAL},
+      FEE = #{record.fee,jdbcType=DECIMAL},
+      BASEFEE = #{record.basefee,jdbcType=DECIMAL},
+      FUNDFEE = #{record.fundfee,jdbcType=DECIMAL},
+      PFFEE = #{record.pffee,jdbcType=DECIMAL},
+      FUND1 = #{record.fund1,jdbcType=DECIMAL},
+      FUND2 = #{record.fund2,jdbcType=DECIMAL},
+      FUND3 = #{record.fund3,jdbcType=DECIMAL},
+      FUND4 = #{record.fund4,jdbcType=DECIMAL},
+      FUND5 = #{record.fund5,jdbcType=DECIMAL},
+      FUND6 = #{record.fund6,jdbcType=DECIMAL},
+      DEMANDMAX = #{record.demandmax,jdbcType=DECIMAL},
+      CAPABILITY = #{record.capability,jdbcType=DECIMAL},
+      PF = #{record.pf,jdbcType=DECIMAL},
+      TOTALFEE = #{record.totalfee,jdbcType=DECIMAL},
+      PERCENT = #{record.percent,jdbcType=DECIMAL},
+      PRICEID = #{record.priceid,jdbcType=DECIMAL},
+      STARTBMTIME = #{record.startbmtime,jdbcType=TIMESTAMP},
+      STARTBMZONGZY = #{record.startbmzongzy,jdbcType=DECIMAL},
+      STARTBMZONGFY = #{record.startbmzongfy,jdbcType=DECIMAL},
+      STARTBMZONGZW = #{record.startbmzongzw,jdbcType=DECIMAL},
+      STARTBMZONGFW = #{record.startbmzongfw,jdbcType=DECIMAL},
+      STARTBMJIANZY = #{record.startbmjianzy,jdbcType=DECIMAL},
+      STARTBMJIANFY = #{record.startbmjianfy,jdbcType=DECIMAL},
+      STARTBMJIANZW = #{record.startbmjianzw,jdbcType=DECIMAL},
+      STARTBMJIANFW = #{record.startbmjianfw,jdbcType=DECIMAL},
+      STARTBMFENGZY = #{record.startbmfengzy,jdbcType=DECIMAL},
+      STARTBMFENGFY = #{record.startbmfengfy,jdbcType=DECIMAL},
+      STARTBMFENGZW = #{record.startbmfengzw,jdbcType=DECIMAL},
+      STARTBMFENGFW = #{record.startbmfengfw,jdbcType=DECIMAL},
+      STARTBMPINGZY = #{record.startbmpingzy,jdbcType=DECIMAL},
+      STARTBMPINGFY = #{record.startbmpingfy,jdbcType=DECIMAL},
+      STARTBMPINGZW = #{record.startbmpingzw,jdbcType=DECIMAL},
+      STARTBMPINGFW = #{record.startbmpingfw,jdbcType=DECIMAL},
+      STARTBMGUZY = #{record.startbmguzy,jdbcType=DECIMAL},
+      STARTBMGUFY = #{record.startbmgufy,jdbcType=DECIMAL},
+      STARTBMGUZW = #{record.startbmguzw,jdbcType=DECIMAL},
+      STARTBMGUFW = #{record.startbmgufw,jdbcType=DECIMAL},
+      ENDBMTIME = #{record.endbmtime,jdbcType=TIMESTAMP},
+      ENDBMZONGZY = #{record.endbmzongzy,jdbcType=DECIMAL},
+      ENDBMZONGFY = #{record.endbmzongfy,jdbcType=DECIMAL},
+      ENDBMZONGZW = #{record.endbmzongzw,jdbcType=DECIMAL},
+      ENDBMZONGFW = #{record.endbmzongfw,jdbcType=DECIMAL},
+      ENDBMJIANZY = #{record.endbmjianzy,jdbcType=DECIMAL},
+      ENDBMJIANFY = #{record.endbmjianfy,jdbcType=DECIMAL},
+      ENDBMJIANZW = #{record.endbmjianzw,jdbcType=DECIMAL},
+      ENDBMJIANFW = #{record.endbmjianfw,jdbcType=DECIMAL},
+      ENDBMFENGZY = #{record.endbmfengzy,jdbcType=DECIMAL},
+      ENDBMFENGFY = #{record.endbmfengfy,jdbcType=DECIMAL},
+      ENDBMFENGZW = #{record.endbmfengzw,jdbcType=DECIMAL},
+      ENDBMFENGFW = #{record.endbmfengfw,jdbcType=DECIMAL},
+      ENDBMPINGZY = #{record.endbmpingzy,jdbcType=DECIMAL},
+      ENDBMPINGFY = #{record.endbmpingfy,jdbcType=DECIMAL},
+      ENDBMPINGZW = #{record.endbmpingzw,jdbcType=DECIMAL},
+      ENDBMPINGFW = #{record.endbmpingfw,jdbcType=DECIMAL},
+      ENDBMGUZY = #{record.endbmguzy,jdbcType=DECIMAL},
+      ENDBMGUFY = #{record.endbmgufy,jdbcType=DECIMAL},
+      ENDBMGUZW = #{record.endbmguzw,jdbcType=DECIMAL},
+      ENDBMGUFW = #{record.endbmgufw,jdbcType=DECIMAL},
+      RATE = #{record.rate,jdbcType=DECIMAL},
+      STATUS = #{record.status,jdbcType=SMALLINT},
+      UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetail" >
+    update ppf_customer_fee_month_detail
+    <set >
+      <if test="endtime != null" >
+        ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="energyzong != null" >
+        ENERGYZONG = #{energyzong,jdbcType=DECIMAL},
+      </if>
+      <if test="energyjian != null" >
+        ENERGYJIAN = #{energyjian,jdbcType=DECIMAL},
+      </if>
+      <if test="energyfeng != null" >
+        ENERGYFENG = #{energyfeng,jdbcType=DECIMAL},
+      </if>
+      <if test="energyping != null" >
+        ENERGYPING = #{energyping,jdbcType=DECIMAL},
+      </if>
+      <if test="energygu != null" >
+        ENERGYGU = #{energygu,jdbcType=DECIMAL},
+      </if>
+      <if test="energyzongq != null" >
+        ENERGYZONGQ = #{energyzongq,jdbcType=DECIMAL},
+      </if>
+      <if test="actualfee != null" >
+        ACTUALFEE = #{actualfee,jdbcType=DECIMAL},
+      </if>
+      <if test="fee != null" >
+        FEE = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="basefee != null" >
+        BASEFEE = #{basefee,jdbcType=DECIMAL},
+      </if>
+      <if test="fundfee != null" >
+        FUNDFEE = #{fundfee,jdbcType=DECIMAL},
+      </if>
+      <if test="pffee != null" >
+        PFFEE = #{pffee,jdbcType=DECIMAL},
+      </if>
+      <if test="fund1 != null" >
+        FUND1 = #{fund1,jdbcType=DECIMAL},
+      </if>
+      <if test="fund2 != null" >
+        FUND2 = #{fund2,jdbcType=DECIMAL},
+      </if>
+      <if test="fund3 != null" >
+        FUND3 = #{fund3,jdbcType=DECIMAL},
+      </if>
+      <if test="fund4 != null" >
+        FUND4 = #{fund4,jdbcType=DECIMAL},
+      </if>
+      <if test="fund5 != null" >
+        FUND5 = #{fund5,jdbcType=DECIMAL},
+      </if>
+      <if test="fund6 != null" >
+        FUND6 = #{fund6,jdbcType=DECIMAL},
+      </if>
+      <if test="demandmax != null" >
+        DEMANDMAX = #{demandmax,jdbcType=DECIMAL},
+      </if>
+      <if test="capability != null" >
+        CAPABILITY = #{capability,jdbcType=DECIMAL},
+      </if>
+      <if test="pf != null" >
+        PF = #{pf,jdbcType=DECIMAL},
+      </if>
+      <if test="totalfee != null" >
+        TOTALFEE = #{totalfee,jdbcType=DECIMAL},
+      </if>
+      <if test="percent != null" >
+        PERCENT = #{percent,jdbcType=DECIMAL},
+      </if>
+      <if test="priceid != null" >
+        PRICEID = #{priceid,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmtime != null" >
+        STARTBMTIME = #{startbmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startbmzongzy != null" >
+        STARTBMZONGZY = #{startbmzongzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmzongfy != null" >
+        STARTBMZONGFY = #{startbmzongfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmzongzw != null" >
+        STARTBMZONGZW = #{startbmzongzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmzongfw != null" >
+        STARTBMZONGFW = #{startbmzongfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianzy != null" >
+        STARTBMJIANZY = #{startbmjianzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianfy != null" >
+        STARTBMJIANFY = #{startbmjianfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianzw != null" >
+        STARTBMJIANZW = #{startbmjianzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmjianfw != null" >
+        STARTBMJIANFW = #{startbmjianfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengzy != null" >
+        STARTBMFENGZY = #{startbmfengzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengfy != null" >
+        STARTBMFENGFY = #{startbmfengfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengzw != null" >
+        STARTBMFENGZW = #{startbmfengzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmfengfw != null" >
+        STARTBMFENGFW = #{startbmfengfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingzy != null" >
+        STARTBMPINGZY = #{startbmpingzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingfy != null" >
+        STARTBMPINGFY = #{startbmpingfy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingzw != null" >
+        STARTBMPINGZW = #{startbmpingzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmpingfw != null" >
+        STARTBMPINGFW = #{startbmpingfw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmguzy != null" >
+        STARTBMGUZY = #{startbmguzy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmgufy != null" >
+        STARTBMGUFY = #{startbmgufy,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmguzw != null" >
+        STARTBMGUZW = #{startbmguzw,jdbcType=DECIMAL},
+      </if>
+      <if test="startbmgufw != null" >
+        STARTBMGUFW = #{startbmgufw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmtime != null" >
+        ENDBMTIME = #{endbmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endbmzongzy != null" >
+        ENDBMZONGZY = #{endbmzongzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmzongfy != null" >
+        ENDBMZONGFY = #{endbmzongfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmzongzw != null" >
+        ENDBMZONGZW = #{endbmzongzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmzongfw != null" >
+        ENDBMZONGFW = #{endbmzongfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianzy != null" >
+        ENDBMJIANZY = #{endbmjianzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianfy != null" >
+        ENDBMJIANFY = #{endbmjianfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianzw != null" >
+        ENDBMJIANZW = #{endbmjianzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmjianfw != null" >
+        ENDBMJIANFW = #{endbmjianfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengzy != null" >
+        ENDBMFENGZY = #{endbmfengzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengfy != null" >
+        ENDBMFENGFY = #{endbmfengfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengzw != null" >
+        ENDBMFENGZW = #{endbmfengzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmfengfw != null" >
+        ENDBMFENGFW = #{endbmfengfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingzy != null" >
+        ENDBMPINGZY = #{endbmpingzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingfy != null" >
+        ENDBMPINGFY = #{endbmpingfy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingzw != null" >
+        ENDBMPINGZW = #{endbmpingzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmpingfw != null" >
+        ENDBMPINGFW = #{endbmpingfw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmguzy != null" >
+        ENDBMGUZY = #{endbmguzy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmgufy != null" >
+        ENDBMGUFY = #{endbmgufy,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmguzw != null" >
+        ENDBMGUZW = #{endbmguzw,jdbcType=DECIMAL},
+      </if>
+      <if test="endbmgufw != null" >
+        ENDBMGUFW = #{endbmgufw,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        RATE = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and STARTTIME = #{starttime,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthDetail" >
+    update ppf_customer_fee_month_detail
+    set ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      ENERGYZONG = #{energyzong,jdbcType=DECIMAL},
+      ENERGYJIAN = #{energyjian,jdbcType=DECIMAL},
+      ENERGYFENG = #{energyfeng,jdbcType=DECIMAL},
+      ENERGYPING = #{energyping,jdbcType=DECIMAL},
+      ENERGYGU = #{energygu,jdbcType=DECIMAL},
+      ENERGYZONGQ = #{energyzongq,jdbcType=DECIMAL},
+      ACTUALFEE = #{actualfee,jdbcType=DECIMAL},
+      FEE = #{fee,jdbcType=DECIMAL},
+      BASEFEE = #{basefee,jdbcType=DECIMAL},
+      FUNDFEE = #{fundfee,jdbcType=DECIMAL},
+      PFFEE = #{pffee,jdbcType=DECIMAL},
+      FUND1 = #{fund1,jdbcType=DECIMAL},
+      FUND2 = #{fund2,jdbcType=DECIMAL},
+      FUND3 = #{fund3,jdbcType=DECIMAL},
+      FUND4 = #{fund4,jdbcType=DECIMAL},
+      FUND5 = #{fund5,jdbcType=DECIMAL},
+      FUND6 = #{fund6,jdbcType=DECIMAL},
+      DEMANDMAX = #{demandmax,jdbcType=DECIMAL},
+      CAPABILITY = #{capability,jdbcType=DECIMAL},
+      PF = #{pf,jdbcType=DECIMAL},
+      TOTALFEE = #{totalfee,jdbcType=DECIMAL},
+      PERCENT = #{percent,jdbcType=DECIMAL},
+      PRICEID = #{priceid,jdbcType=DECIMAL},
+      STARTBMTIME = #{startbmtime,jdbcType=TIMESTAMP},
+      STARTBMZONGZY = #{startbmzongzy,jdbcType=DECIMAL},
+      STARTBMZONGFY = #{startbmzongfy,jdbcType=DECIMAL},
+      STARTBMZONGZW = #{startbmzongzw,jdbcType=DECIMAL},
+      STARTBMZONGFW = #{startbmzongfw,jdbcType=DECIMAL},
+      STARTBMJIANZY = #{startbmjianzy,jdbcType=DECIMAL},
+      STARTBMJIANFY = #{startbmjianfy,jdbcType=DECIMAL},
+      STARTBMJIANZW = #{startbmjianzw,jdbcType=DECIMAL},
+      STARTBMJIANFW = #{startbmjianfw,jdbcType=DECIMAL},
+      STARTBMFENGZY = #{startbmfengzy,jdbcType=DECIMAL},
+      STARTBMFENGFY = #{startbmfengfy,jdbcType=DECIMAL},
+      STARTBMFENGZW = #{startbmfengzw,jdbcType=DECIMAL},
+      STARTBMFENGFW = #{startbmfengfw,jdbcType=DECIMAL},
+      STARTBMPINGZY = #{startbmpingzy,jdbcType=DECIMAL},
+      STARTBMPINGFY = #{startbmpingfy,jdbcType=DECIMAL},
+      STARTBMPINGZW = #{startbmpingzw,jdbcType=DECIMAL},
+      STARTBMPINGFW = #{startbmpingfw,jdbcType=DECIMAL},
+      STARTBMGUZY = #{startbmguzy,jdbcType=DECIMAL},
+      STARTBMGUFY = #{startbmgufy,jdbcType=DECIMAL},
+      STARTBMGUZW = #{startbmguzw,jdbcType=DECIMAL},
+      STARTBMGUFW = #{startbmgufw,jdbcType=DECIMAL},
+      ENDBMTIME = #{endbmtime,jdbcType=TIMESTAMP},
+      ENDBMZONGZY = #{endbmzongzy,jdbcType=DECIMAL},
+      ENDBMZONGFY = #{endbmzongfy,jdbcType=DECIMAL},
+      ENDBMZONGZW = #{endbmzongzw,jdbcType=DECIMAL},
+      ENDBMZONGFW = #{endbmzongfw,jdbcType=DECIMAL},
+      ENDBMJIANZY = #{endbmjianzy,jdbcType=DECIMAL},
+      ENDBMJIANFY = #{endbmjianfy,jdbcType=DECIMAL},
+      ENDBMJIANZW = #{endbmjianzw,jdbcType=DECIMAL},
+      ENDBMJIANFW = #{endbmjianfw,jdbcType=DECIMAL},
+      ENDBMFENGZY = #{endbmfengzy,jdbcType=DECIMAL},
+      ENDBMFENGFY = #{endbmfengfy,jdbcType=DECIMAL},
+      ENDBMFENGZW = #{endbmfengzw,jdbcType=DECIMAL},
+      ENDBMFENGFW = #{endbmfengfw,jdbcType=DECIMAL},
+      ENDBMPINGZY = #{endbmpingzy,jdbcType=DECIMAL},
+      ENDBMPINGFY = #{endbmpingfy,jdbcType=DECIMAL},
+      ENDBMPINGZW = #{endbmpingzw,jdbcType=DECIMAL},
+      ENDBMPINGFW = #{endbmpingfw,jdbcType=DECIMAL},
+      ENDBMGUZY = #{endbmguzy,jdbcType=DECIMAL},
+      ENDBMGUFY = #{endbmgufy,jdbcType=DECIMAL},
+      ENDBMGUZW = #{endbmguzw,jdbcType=DECIMAL},
+      ENDBMGUFW = #{endbmgufw,jdbcType=DECIMAL},
+      RATE = #{rate,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=SMALLINT},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP}
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and STARTTIME = #{starttime,jdbcType=TIMESTAMP}
+  </update>
+  
+  <!-- add -->
+  <select id="selectCustomerPowerFeeMonthByMap" resultType="com.holley.emcpshare.model.def.PpfCustomerFeeMonthDetailVO">
+  	SELECT
+    detail.*,commparam.COMMADDR
+    FROM ppf_customer_fee_month_detail detail
+    LEFT JOIN ppf_customer customer
+    ON detail.CUSTOMERID = customer.CUSTOMERID
+    LEFT JOIN obj_point_commparam commparam 
+	ON detail.POINTID = commparam.POINTID
+    WHERE customer.HH = #{hh}
+    AND customer.EID = #{eid}
+    AND DATATIME IN
+    <foreach item="item" index="index" collection="dataTimes" open="(" separator="," close=")">  
+ 	#{item}  
+	</foreach>
+  </select>
+</mapper>

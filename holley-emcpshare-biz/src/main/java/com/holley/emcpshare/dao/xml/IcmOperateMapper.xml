@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.IcmOperateMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.IcmOperate" >
+    <id column="OPERATE_TIME" property="operateTime" jdbcType="TIMESTAMP" />
+    <id column="POINT_ID" property="pointId" jdbcType="INTEGER" />
+    <result column="OPERATE_TYPE" property="operateType" jdbcType="SMALLINT" />
+    <result column="METER_NO" property="meterNo" jdbcType="VARCHAR" />
+    <result column="FACTORY_NO" property="factoryNo" jdbcType="VARCHAR" />
+    <result column="BUY_MONEY" property="buyMoney" jdbcType="DECIMAL" />
+    <result column="BUY_ENERGY" property="buyEnergy" jdbcType="DECIMAL" />
+    <result column="BUY_COUNT" property="buyCount" jdbcType="INTEGER" />
+    <result column="ALARM_ENERGY_LIMIT" property="alarmEnergyLimit" jdbcType="DECIMAL" />
+    <result column="HOARD_ENERGY_LIMIT" property="hoardEnergyLimit" jdbcType="DECIMAL" />
+    <result column="CREDIT_ENERGY_LIMIT" property="creditEnergyLimit" jdbcType="DECIMAL" />
+    <result column="P_LIMIT" property="pLimit" jdbcType="DECIMAL" />
+    <result column="CUSTOMER_ID" property="customerId" jdbcType="INTEGER" />
+    <result column="CUSTOMER_NO" property="customerNo" jdbcType="VARCHAR" />
+    <result column="REGISTER_NO" property="registerNo" jdbcType="VARCHAR" />
+    <result column="OPERATOR_NO" property="operatorNo" jdbcType="VARCHAR" />
+    <result column="RATE" property="rate" jdbcType="DECIMAL" />
+    <result column="OPERATE_MODE" property="operateMode" jdbcType="SMALLINT" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="SMALLINT" />
+    <result column="ERROR_CODE" property="errorCode" jdbcType="VARCHAR" />
+    <result column="ERROR_MSG" property="errorMsg" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    OPERATE_TIME, POINT_ID, OPERATE_TYPE, METER_NO, FACTORY_NO, BUY_MONEY, BUY_ENERGY, 
+    BUY_COUNT, ALARM_ENERGY_LIMIT, HOARD_ENERGY_LIMIT, CREDIT_ENERGY_LIMIT, P_LIMIT, 
+    CUSTOMER_ID, CUSTOMER_NO, REGISTER_NO, OPERATOR_NO, RATE, OPERATE_MODE, ACCOUNT, 
+    STATUS, ERROR_CODE, ERROR_MSG, ADD_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.IcmOperateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from icm_operate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.IcmOperateKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from icm_operate
+    where OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+      and POINT_ID = #{pointId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.IcmOperateKey" >
+    delete from icm_operate
+    where OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+      and POINT_ID = #{pointId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.IcmOperateExample" >
+    delete from icm_operate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.IcmOperate" >
+    insert into icm_operate (OPERATE_TIME, POINT_ID, OPERATE_TYPE, 
+      METER_NO, FACTORY_NO, BUY_MONEY, 
+      BUY_ENERGY, BUY_COUNT, ALARM_ENERGY_LIMIT, 
+      HOARD_ENERGY_LIMIT, CREDIT_ENERGY_LIMIT, P_LIMIT, 
+      CUSTOMER_ID, CUSTOMER_NO, REGISTER_NO, 
+      OPERATOR_NO, RATE, OPERATE_MODE, 
+      ACCOUNT, STATUS, ERROR_CODE, 
+      ERROR_MSG, ADD_TIME, UPDATE_TIME
+      )
+    values (#{operateTime,jdbcType=TIMESTAMP}, #{pointId,jdbcType=INTEGER}, #{operateType,jdbcType=SMALLINT}, 
+      #{meterNo,jdbcType=VARCHAR}, #{factoryNo,jdbcType=VARCHAR}, #{buyMoney,jdbcType=DECIMAL}, 
+      #{buyEnergy,jdbcType=DECIMAL}, #{buyCount,jdbcType=INTEGER}, #{alarmEnergyLimit,jdbcType=DECIMAL}, 
+      #{hoardEnergyLimit,jdbcType=DECIMAL}, #{creditEnergyLimit,jdbcType=DECIMAL}, #{pLimit,jdbcType=DECIMAL}, 
+      #{customerId,jdbcType=INTEGER}, #{customerNo,jdbcType=VARCHAR}, #{registerNo,jdbcType=VARCHAR}, 
+      #{operatorNo,jdbcType=VARCHAR}, #{rate,jdbcType=DECIMAL}, #{operateMode,jdbcType=SMALLINT}, 
+      #{account,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{errorCode,jdbcType=VARCHAR}, 
+      #{errorMsg,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.IcmOperate" >
+    insert into icm_operate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operateTime != null" >
+        OPERATE_TIME,
+      </if>
+      <if test="pointId != null" >
+        POINT_ID,
+      </if>
+      <if test="operateType != null" >
+        OPERATE_TYPE,
+      </if>
+      <if test="meterNo != null" >
+        METER_NO,
+      </if>
+      <if test="factoryNo != null" >
+        FACTORY_NO,
+      </if>
+      <if test="buyMoney != null" >
+        BUY_MONEY,
+      </if>
+      <if test="buyEnergy != null" >
+        BUY_ENERGY,
+      </if>
+      <if test="buyCount != null" >
+        BUY_COUNT,
+      </if>
+      <if test="alarmEnergyLimit != null" >
+        ALARM_ENERGY_LIMIT,
+      </if>
+      <if test="hoardEnergyLimit != null" >
+        HOARD_ENERGY_LIMIT,
+      </if>
+      <if test="creditEnergyLimit != null" >
+        CREDIT_ENERGY_LIMIT,
+      </if>
+      <if test="pLimit != null" >
+        P_LIMIT,
+      </if>
+      <if test="customerId != null" >
+        CUSTOMER_ID,
+      </if>
+      <if test="customerNo != null" >
+        CUSTOMER_NO,
+      </if>
+      <if test="registerNo != null" >
+        REGISTER_NO,
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO,
+      </if>
+      <if test="rate != null" >
+        RATE,
+      </if>
+      <if test="operateMode != null" >
+        OPERATE_MODE,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE,
+      </if>
+      <if test="errorMsg != null" >
+        ERROR_MSG,
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pointId != null" >
+        #{pointId,jdbcType=INTEGER},
+      </if>
+      <if test="operateType != null" >
+        #{operateType,jdbcType=SMALLINT},
+      </if>
+      <if test="meterNo != null" >
+        #{meterNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyMoney != null" >
+        #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="buyEnergy != null" >
+        #{buyEnergy,jdbcType=DECIMAL},
+      </if>
+      <if test="buyCount != null" >
+        #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="alarmEnergyLimit != null" >
+        #{alarmEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="hoardEnergyLimit != null" >
+        #{hoardEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="creditEnergyLimit != null" >
+        #{creditEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="pLimit != null" >
+        #{pLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerNo != null" >
+        #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNo != null" >
+        #{registerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorNo != null" >
+        #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="operateMode != null" >
+        #{operateMode,jdbcType=SMALLINT},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.IcmOperateExample" resultType="java.lang.Integer" >
+    select count(*) from icm_operate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update icm_operate
+    <set >
+      <if test="record.operateTime != null" >
+        OPERATE_TIME = #{record.operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pointId != null" >
+        POINT_ID = #{record.pointId,jdbcType=INTEGER},
+      </if>
+      <if test="record.operateType != null" >
+        OPERATE_TYPE = #{record.operateType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.meterNo != null" >
+        METER_NO = #{record.meterNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNo != null" >
+        FACTORY_NO = #{record.factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyMoney != null" >
+        BUY_MONEY = #{record.buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyEnergy != null" >
+        BUY_ENERGY = #{record.buyEnergy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyCount != null" >
+        BUY_COUNT = #{record.buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmEnergyLimit != null" >
+        ALARM_ENERGY_LIMIT = #{record.alarmEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hoardEnergyLimit != null" >
+        HOARD_ENERGY_LIMIT = #{record.hoardEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.creditEnergyLimit != null" >
+        CREDIT_ENERGY_LIMIT = #{record.creditEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pLimit != null" >
+        P_LIMIT = #{record.pLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.customerId != null" >
+        CUSTOMER_ID = #{record.customerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerNo != null" >
+        CUSTOMER_NO = #{record.customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerNo != null" >
+        REGISTER_NO = #{record.registerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorNo != null" >
+        OPERATOR_NO = #{record.operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        RATE = #{record.rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operateMode != null" >
+        OPERATE_MODE = #{record.operateMode,jdbcType=SMALLINT},
+      </if>
+      <if test="record.account != null" >
+        ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.errorCode != null" >
+        ERROR_CODE = #{record.errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorMsg != null" >
+        ERROR_MSG = #{record.errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        ADD_TIME = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update icm_operate
+    set OPERATE_TIME = #{record.operateTime,jdbcType=TIMESTAMP},
+      POINT_ID = #{record.pointId,jdbcType=INTEGER},
+      OPERATE_TYPE = #{record.operateType,jdbcType=SMALLINT},
+      METER_NO = #{record.meterNo,jdbcType=VARCHAR},
+      FACTORY_NO = #{record.factoryNo,jdbcType=VARCHAR},
+      BUY_MONEY = #{record.buyMoney,jdbcType=DECIMAL},
+      BUY_ENERGY = #{record.buyEnergy,jdbcType=DECIMAL},
+      BUY_COUNT = #{record.buyCount,jdbcType=INTEGER},
+      ALARM_ENERGY_LIMIT = #{record.alarmEnergyLimit,jdbcType=DECIMAL},
+      HOARD_ENERGY_LIMIT = #{record.hoardEnergyLimit,jdbcType=DECIMAL},
+      CREDIT_ENERGY_LIMIT = #{record.creditEnergyLimit,jdbcType=DECIMAL},
+      P_LIMIT = #{record.pLimit,jdbcType=DECIMAL},
+      CUSTOMER_ID = #{record.customerId,jdbcType=INTEGER},
+      CUSTOMER_NO = #{record.customerNo,jdbcType=VARCHAR},
+      REGISTER_NO = #{record.registerNo,jdbcType=VARCHAR},
+      OPERATOR_NO = #{record.operatorNo,jdbcType=VARCHAR},
+      RATE = #{record.rate,jdbcType=DECIMAL},
+      OPERATE_MODE = #{record.operateMode,jdbcType=SMALLINT},
+      ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=SMALLINT},
+      ERROR_CODE = #{record.errorCode,jdbcType=VARCHAR},
+      ERROR_MSG = #{record.errorMsg,jdbcType=VARCHAR},
+      ADD_TIME = #{record.addTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.IcmOperate" >
+    update icm_operate
+    <set >
+      <if test="operateType != null" >
+        OPERATE_TYPE = #{operateType,jdbcType=SMALLINT},
+      </if>
+      <if test="meterNo != null" >
+        METER_NO = #{meterNo,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNo != null" >
+        FACTORY_NO = #{factoryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyMoney != null" >
+        BUY_MONEY = #{buyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="buyEnergy != null" >
+        BUY_ENERGY = #{buyEnergy,jdbcType=DECIMAL},
+      </if>
+      <if test="buyCount != null" >
+        BUY_COUNT = #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="alarmEnergyLimit != null" >
+        ALARM_ENERGY_LIMIT = #{alarmEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="hoardEnergyLimit != null" >
+        HOARD_ENERGY_LIMIT = #{hoardEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="creditEnergyLimit != null" >
+        CREDIT_ENERGY_LIMIT = #{creditEnergyLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="pLimit != null" >
+        P_LIMIT = #{pLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="customerId != null" >
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerNo != null" >
+        CUSTOMER_NO = #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="registerNo != null" >
+        REGISTER_NO = #{registerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorNo != null" >
+        OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        RATE = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="operateMode != null" >
+        OPERATE_MODE = #{operateMode,jdbcType=SMALLINT},
+      </if>
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+      and POINT_ID = #{pointId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.IcmOperate" >
+    update icm_operate
+    set OPERATE_TYPE = #{operateType,jdbcType=SMALLINT},
+      METER_NO = #{meterNo,jdbcType=VARCHAR},
+      FACTORY_NO = #{factoryNo,jdbcType=VARCHAR},
+      BUY_MONEY = #{buyMoney,jdbcType=DECIMAL},
+      BUY_ENERGY = #{buyEnergy,jdbcType=DECIMAL},
+      BUY_COUNT = #{buyCount,jdbcType=INTEGER},
+      ALARM_ENERGY_LIMIT = #{alarmEnergyLimit,jdbcType=DECIMAL},
+      HOARD_ENERGY_LIMIT = #{hoardEnergyLimit,jdbcType=DECIMAL},
+      CREDIT_ENERGY_LIMIT = #{creditEnergyLimit,jdbcType=DECIMAL},
+      P_LIMIT = #{pLimit,jdbcType=DECIMAL},
+      CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      CUSTOMER_NO = #{customerNo,jdbcType=VARCHAR},
+      REGISTER_NO = #{registerNo,jdbcType=VARCHAR},
+      OPERATOR_NO = #{operatorNo,jdbcType=VARCHAR},
+      RATE = #{rate,jdbcType=DECIMAL},
+      OPERATE_MODE = #{operateMode,jdbcType=SMALLINT},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=SMALLINT},
+      ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      ADD_TIME = #{addTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+      and POINT_ID = #{pointId,jdbcType=INTEGER}
+  </update>
+  <select id="selectBuyHistoryByPage" parameterType="java.util.Map" resultType="com.holley.emcpshare.model.icm.BuyElectricHistory">
+	SELECT o.CUSTOMER_NO AS customerNo,o.METER_NO AS meterNo,o.RATE AS meterRate,o.ALARM_ENERGY_LIMIT AS alarmEnergyLimit,
+		o.P_LIMIT AS pLimit,o.BUY_MONEY AS buyMoney,o.BUY_ENERGY AS buyEnergy,p.TOTAL_BUY_ENERGY AS totalBuyMoney,
+		o.BUY_COUNT AS buyCount,o.OPERATE_TIME AS dataTime,o.ACCOUNT AS account,c.HM AS customerName,o.STATUS as status
+	FROM ppf_customer c,icm_param p,icm_operate o,
+	(
+		SELECT o.point_id,max(o.OPERATE_TIME) AS operate_time
+		FROM icm_operate o
+		WHERE o.OPERATE_TYPE IN (2, 3)
+		AND o.POINT_ID IN (
+			SELECT POINT_ID
+			FROM ppf_customer c,icm_param p
+			WHERE c.CUSTOMERID = p.CUSTOMER_ID
+			AND p.CUSTOMER_NO = #{customer_no,jdbcType=VARCHAR}
+		)
+		GROUP BY o.POINT_ID
+	) om
+	WHERE c.CUSTOMERID = p.CUSTOMER_ID
+	AND o.POINT_ID = om.point_id
+	AND p.POINT_ID = o.POINT_ID
+	AND o.OPERATE_TIME &gt;= om.operate_time
+	AND o.OPERATE_TYPE IN (2, 3)
+	AND p.CUSTOMER_NO = #{customer_no,jdbcType=VARCHAR}
+	AND c.EID = #{enterpriseId}
+  </select>
+  <select id="selectBuyPurchaseHistoryByPage" parameterType="java.util.Map" resultType="com.holley.emcpshare.model.icm.BuyMeterHistory">
+  	SELECT io.OPERATE_TIME AS dataTime,io.METER_NO AS meterNo,io.CUSTOMER_NO AS customerNo,io.BUY_ENERGY AS buyEnergy,io.BUY_MONEY AS buyMoney,
+		ip.TOTAL_BUY_ENERGY AS totalBuyEnergy,io.BUY_COUNT AS buyCount,io.OPERATE_TYPE AS type,io.ACCOUNT AS account,io.P_LIMIT as pLimit,
+		io.ALARM_ENERGY_LIMIT as alarmEnergyLimit,io.STATUS as status
+	FROM icm_operate io,icm_param ip,view_point v
+	WHERE io.METER_NO = #{meterNo,jdbcType=VARCHAR}
+	AND io.OPERATE_TYPE IN (2,3)
+	AND ip.POINT_ID = v.POINTID
+	AND v.OBJID = #{enterpriseId}
+	AND v.OBJTYPE = 11
+	AND io.METER_NO = ip.METER_NO
+	AND io.ADD_TIME &gt;= #{starttime}
+	ORDER BY io.OPERATE_TIME DESC
+  </select>
+</mapper>

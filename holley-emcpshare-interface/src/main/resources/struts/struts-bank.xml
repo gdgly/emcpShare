@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+<struts>
+	<package name="bank" namespace="/bank" extends="json-base">
+		
+		<!-- 银行签约 -->
+		<action name="query_bank_contract" class="bankAction" method="queryBankContract">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 银行解约 -->
+		<action name="query_bank_dissolution" class="bankAction" method="queryBankDissolution">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 银行获取未扣款账单 -->
+		<action name="query_bank_bills" class="bankAction" method="queryBankBills">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 银行返回扣款账单 -->
+		<action name="query_bank_bills_result" class="bankAction" method="queryBankBillsResult">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+	</package>	
+</struts>

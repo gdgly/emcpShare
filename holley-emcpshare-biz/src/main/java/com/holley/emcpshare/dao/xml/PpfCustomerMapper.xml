@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.PpfCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.PpfCustomer" >
+    <id column="CUSTOMERID" property="customerid" jdbcType="INTEGER" />
+    <result column="HM" property="hm" jdbcType="VARCHAR" />
+    <result column="HH" property="hh" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="LINKMAN" property="linkman" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="DEMANDPROP" property="demandprop" jdbcType="SMALLINT" />
+    <result column="VOLTAGECLASS" property="voltageclass" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="EID" property="eid" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUSTOMERID, HM, HH, TYPE, LINKMAN, PHONE, ADDRESS, DEMANDPROP, VOLTAGECLASS, CREATETIME, 
+    CARDNO, EID, STATUS, CREATOR, UPDATETIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.PpfCustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ppf_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ppf_customer
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ppf_customer
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.PpfCustomerExample" >
+    delete from ppf_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.PpfCustomer" useGeneratedKeys="true" keyProperty="customerid">
+    insert into ppf_customer (CUSTOMERID, HM, HH, 
+      TYPE, LINKMAN, PHONE, 
+      ADDRESS, DEMANDPROP, VOLTAGECLASS, 
+      CREATETIME, CARDNO, EID, 
+      STATUS, CREATOR, UPDATETIME
+      )
+    values (#{customerid,jdbcType=INTEGER}, #{hm,jdbcType=VARCHAR}, #{hh,jdbcType=VARCHAR}, 
+      #{type,jdbcType=DECIMAL}, #{linkman,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{demandprop,jdbcType=SMALLINT}, #{voltageclass,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{cardno,jdbcType=VARCHAR}, #{eid,jdbcType=DECIMAL}, 
+      #{status,jdbcType=DECIMAL}, #{creator,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.PpfCustomer" useGeneratedKeys="true" keyProperty="customerid">
+    insert into ppf_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        CUSTOMERID,
+      </if>
+      <if test="hm != null" >
+        HM,
+      </if>
+      <if test="hh != null" >
+        HH,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="linkman != null" >
+        LINKMAN,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="demandprop != null" >
+        DEMANDPROP,
+      </if>
+      <if test="voltageclass != null" >
+        VOLTAGECLASS,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="cardno != null" >
+        CARDNO,
+      </if>
+      <if test="eid != null" >
+        EID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="hm != null" >
+        #{hm,jdbcType=VARCHAR},
+      </if>
+      <if test="hh != null" >
+        #{hh,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="demandprop != null" >
+        #{demandprop,jdbcType=SMALLINT},
+      </if>
+      <if test="voltageclass != null" >
+        #{voltageclass,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.PpfCustomerExample" resultType="java.lang.Integer" >
+    select count(*) from ppf_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ppf_customer
+    <set >
+      <if test="record.customerid != null" >
+        CUSTOMERID = #{record.customerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hm != null" >
+        HM = #{record.hm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hh != null" >
+        HH = #{record.hh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=DECIMAL},
+      </if>
+      <if test="record.linkman != null" >
+        LINKMAN = #{record.linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.demandprop != null" >
+        DEMANDPROP = #{record.demandprop,jdbcType=SMALLINT},
+      </if>
+      <if test="record.voltageclass != null" >
+        VOLTAGECLASS = #{record.voltageclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cardno != null" >
+        CARDNO = #{record.cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eid != null" >
+        EID = #{record.eid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.creator != null" >
+        CREATOR = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null" >
+        UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ppf_customer
+    set CUSTOMERID = #{record.customerid,jdbcType=INTEGER},
+      HM = #{record.hm,jdbcType=VARCHAR},
+      HH = #{record.hh,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=DECIMAL},
+      LINKMAN = #{record.linkman,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      DEMANDPROP = #{record.demandprop,jdbcType=SMALLINT},
+      VOLTAGECLASS = #{record.voltageclass,jdbcType=VARCHAR},
+      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      CARDNO = #{record.cardno,jdbcType=VARCHAR},
+      EID = #{record.eid,jdbcType=DECIMAL},
+      STATUS = #{record.status,jdbcType=DECIMAL},
+      CREATOR = #{record.creator,jdbcType=VARCHAR},
+      UPDATETIME = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.PpfCustomer" >
+    update ppf_customer
+    <set >
+      <if test="hm != null" >
+        HM = #{hm,jdbcType=VARCHAR},
+      </if>
+      <if test="hh != null" >
+        HH = #{hh,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="linkman != null" >
+        LINKMAN = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="demandprop != null" >
+        DEMANDPROP = #{demandprop,jdbcType=SMALLINT},
+      </if>
+      <if test="voltageclass != null" >
+        VOLTAGECLASS = #{voltageclass,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cardno != null" >
+        CARDNO = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        EID = #{eid,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="creator != null" >
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.PpfCustomer" >
+    update ppf_customer
+    set HM = #{hm,jdbcType=VARCHAR},
+      HH = #{hh,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=DECIMAL},
+      LINKMAN = #{linkman,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      DEMANDPROP = #{demandprop,jdbcType=SMALLINT},
+      VOLTAGECLASS = #{voltageclass,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      CARDNO = #{cardno,jdbcType=VARCHAR},
+      EID = #{eid,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP}
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+  </update>
+  <select id="selectCustomerByPage" parameterType="java.util.Map" resultType="com.holley.emcpshare.model.icm.PpfCustomerVO">
+  	SELECT pc.CUSTOMERID as customerId,pc.HH AS Hh,pc.HM AS customerName,pc.TYPE AS customerType,pc.LINKMAN,pc.PHONE,pc.`STATUS`,LPAD(pc.CUSTOMERID, 10, 0) AS customerNo
+	FROM ppf_customer pc
+	WHERE pc.EID = #{enterpriseId}
+	AND pc.STATUS = 1
+	<if test="customerName != null">
+		AND pc.HM LIKE CONCAT('%',#{customerName},'%')
+	</if>
+	<if test="mobile != null">
+		AND pc.PHONE LIKE CONCAT('%',#{mobile},'%')
+	</if>
+	ORDER BY pc.CREATETIME
+  </select>
+  <select id="selectCustomerByCustomerNo" parameterType="java.util.Map" resultType="com.holley.emcpshare.model.icm.PpfCustomerVO">
+  	SELECT pc.HH AS Hh,pc.CUSTOMERID,pc.HM AS customerName,pc.TYPE AS customerType,pc.LINKMAN AS linkman,pc.PHONE AS phone,pc.`STATUS` AS STATUS
+	FROM ppf_customer pc
+	WHERE pc.CUSTOMERID = #{customer_no}
+	AND pc.EID = #{enterpriseId}
+	AND pc.STATUS = 1
+  </select>
+  <!-- 龙游银行查询签约用户 -->
+  <select id="selectBankContract" resultType="com.holley.emcpshare.model.bank.BankContractRs">
+  	select point.POINTID,customer.HH userAccount,customer.HM userName, 
+	customer.CARDNO cardNumber,customer.PHONE phone,
+	point.ADDR meterAddress,pointcommparam.COMMADDR meterNumber
+	from ppf_customer customer
+	left join ppf_point_customer pointcustomer
+	on customer.CUSTOMERID = pointcustomer.CUSTOMERID
+	left join obj_point_commparam pointcommparam
+	on pointcustomer.POINTID = pointcommparam.POINTID
+	left join obj_point point
+	on pointcommparam.POINTID = point.POINTID
+	where customer.HH = #{hh}
+	and customer.EID = #{eid}
+	and pointcustomer.STARTTIME &lt;= now()
+	and (pointcustomer.ENDTIME is null or pointcustomer.ENDTIME &gt; now())
+	and point.ENERGYTYPEID = #{energyType}
+	and customer.STATUS &gt; 0
+	limit 1
+  </select>
+  <!-- 义乌商贸城 -->
+  <select id="selectCustomerAccountInfoByMap" resultType="com.holley.emcpshare.model.def.AccountUserInfoVO" >
+  	SELECT 
+  	customer.HH userId,customer.HM name,customer.LINKMAN linkman,customer.PHONE phone,
+  	account.USABLEMONEY usableMoney
+  	FROM
+  	ppf_customer_account account 
+  	LEFT JOIN 
+  	ppf_customer customer
+  	ON account.CUSTOMERID = customer.CUSTOMERID
+  	WHERE customer.HH = #{hh}
+  	AND customer.EID = #{eid}
+  	AND customer.STATUS = #{status}
+  </select>
+</mapper>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.DatStaPointUsedMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.DatStaPointUsed" >
+    <id column="CIRCLETYPEID" property="circletypeid" jdbcType="DECIMAL" />
+    <id column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <id column="POINTID" property="pointid" jdbcType="DECIMAL" />
+    <result column="USED" property="used" jdbcType="DECIMAL" />
+    <result column="PROP" property="prop" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CIRCLETYPEID, DATATIME, POINTID, USED, PROP, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatStaPointUsedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dat_sta_point_used
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatStaPointUsedKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from dat_sta_point_used
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.DatStaPointUsedKey" >
+    delete from dat_sta_point_used
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.DatStaPointUsedExample" >
+    delete from dat_sta_point_used
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.DatStaPointUsed" >
+    insert into dat_sta_point_used (CIRCLETYPEID, DATATIME, POINTID, 
+      USED, PROP, REMARK)
+    values (#{circletypeid,jdbcType=DECIMAL}, #{datatime,jdbcType=TIMESTAMP}, #{pointid,jdbcType=DECIMAL}, 
+      #{used,jdbcType=DECIMAL}, #{prop,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.DatStaPointUsed" >
+    insert into dat_sta_point_used
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="circletypeid != null" >
+        CIRCLETYPEID,
+      </if>
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="pointid != null" >
+        POINTID,
+      </if>
+      <if test="used != null" >
+        USED,
+      </if>
+      <if test="prop != null" >
+        PROP,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="circletypeid != null" >
+        #{circletypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="used != null" >
+        #{used,jdbcType=DECIMAL},
+      </if>
+      <if test="prop != null" >
+        #{prop,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.DatStaPointUsedExample" resultType="java.lang.Integer" >
+    select count(*) from dat_sta_point_used
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dat_sta_point_used
+    <set >
+      <if test="record.circletypeid != null" >
+        CIRCLETYPEID = #{record.circletypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pointid != null" >
+        POINTID = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.used != null" >
+        USED = #{record.used,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prop != null" >
+        PROP = #{record.prop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dat_sta_point_used
+    set CIRCLETYPEID = #{record.circletypeid,jdbcType=DECIMAL},
+      DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      POINTID = #{record.pointid,jdbcType=DECIMAL},
+      USED = #{record.used,jdbcType=DECIMAL},
+      PROP = #{record.prop,jdbcType=DECIMAL},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.DatStaPointUsed" >
+    update dat_sta_point_used
+    <set >
+      <if test="used != null" >
+        USED = #{used,jdbcType=DECIMAL},
+      </if>
+      <if test="prop != null" >
+        PROP = #{prop,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.DatStaPointUsed" >
+    update dat_sta_point_used
+    set USED = #{used,jdbcType=DECIMAL},
+      PROP = #{prop,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+</mapper>

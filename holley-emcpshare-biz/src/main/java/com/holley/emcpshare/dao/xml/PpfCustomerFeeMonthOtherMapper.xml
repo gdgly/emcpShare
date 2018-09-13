@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.PpfCustomerFeeMonthOtherMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.PpfCustomerFeeMonthOther" >
+    <id column="CUSTOMERID" property="customerid" jdbcType="INTEGER" />
+    <id column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <id column="ENERGYTYPE" property="energytype" jdbcType="SMALLINT" />
+    <result column="FEE" property="fee" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="SMALLINT" />
+    <result column="USABLEMONEY" property="usablemoney" jdbcType="DECIMAL" />
+    <result column="ADDTIME" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="BILLTIME" property="billtime" jdbcType="TIMESTAMP" />
+    <result column="CUTSTATUS" property="cutstatus" jdbcType="SMALLINT" />
+    <result column="CUTTIME" property="cuttime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUSTOMERID, DATATIME, ENERGYTYPE, FEE, STATUS, USABLEMONEY, ADDTIME, BILLTIME, CUTSTATUS, 
+    CUTTIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOtherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ppf_customer_fee_month_other
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOtherKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from ppf_customer_fee_month_other
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOtherKey" >
+    delete from ppf_customer_fee_month_other
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=SMALLINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOtherExample" >
+    delete from ppf_customer_fee_month_other
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOther" >
+    insert into ppf_customer_fee_month_other (CUSTOMERID, DATATIME, ENERGYTYPE, 
+      FEE, STATUS, USABLEMONEY, 
+      ADDTIME, BILLTIME, CUTSTATUS, 
+      CUTTIME)
+    values (#{customerid,jdbcType=INTEGER}, #{datatime,jdbcType=TIMESTAMP}, #{energytype,jdbcType=SMALLINT}, 
+      #{fee,jdbcType=DECIMAL}, #{status,jdbcType=SMALLINT}, #{usablemoney,jdbcType=DECIMAL}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{billtime,jdbcType=TIMESTAMP}, #{cutstatus,jdbcType=SMALLINT}, 
+      #{cuttime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOther" >
+    insert into ppf_customer_fee_month_other
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        CUSTOMERID,
+      </if>
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="energytype != null" >
+        ENERGYTYPE,
+      </if>
+      <if test="fee != null" >
+        FEE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="usablemoney != null" >
+        USABLEMONEY,
+      </if>
+      <if test="addtime != null" >
+        ADDTIME,
+      </if>
+      <if test="billtime != null" >
+        BILLTIME,
+      </if>
+      <if test="cutstatus != null" >
+        CUTSTATUS,
+      </if>
+      <if test="cuttime != null" >
+        CUTTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        #{customerid,jdbcType=INTEGER},
+      </if>
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="energytype != null" >
+        #{energytype,jdbcType=SMALLINT},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="usablemoney != null" >
+        #{usablemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billtime != null" >
+        #{billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cutstatus != null" >
+        #{cutstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="cuttime != null" >
+        #{cuttime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOtherExample" resultType="java.lang.Integer" >
+    select count(*) from ppf_customer_fee_month_other
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ppf_customer_fee_month_other
+    <set >
+      <if test="record.customerid != null" >
+        CUSTOMERID = #{record.customerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.energytype != null" >
+        ENERGYTYPE = #{record.energytype,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fee != null" >
+        FEE = #{record.fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.usablemoney != null" >
+        USABLEMONEY = #{record.usablemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addtime != null" >
+        ADDTIME = #{record.addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.billtime != null" >
+        BILLTIME = #{record.billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cutstatus != null" >
+        CUTSTATUS = #{record.cutstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="record.cuttime != null" >
+        CUTTIME = #{record.cuttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ppf_customer_fee_month_other
+    set CUSTOMERID = #{record.customerid,jdbcType=INTEGER},
+      DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      ENERGYTYPE = #{record.energytype,jdbcType=SMALLINT},
+      FEE = #{record.fee,jdbcType=DECIMAL},
+      STATUS = #{record.status,jdbcType=SMALLINT},
+      USABLEMONEY = #{record.usablemoney,jdbcType=DECIMAL},
+      ADDTIME = #{record.addtime,jdbcType=TIMESTAMP},
+      BILLTIME = #{record.billtime,jdbcType=TIMESTAMP},
+      CUTSTATUS = #{record.cutstatus,jdbcType=SMALLINT},
+      CUTTIME = #{record.cuttime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOther" >
+    update ppf_customer_fee_month_other
+    <set >
+      <if test="fee != null" >
+        FEE = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="usablemoney != null" >
+        USABLEMONEY = #{usablemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        ADDTIME = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billtime != null" >
+        BILLTIME = #{billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cutstatus != null" >
+        CUTSTATUS = #{cutstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="cuttime != null" >
+        CUTTIME = #{cuttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.PpfCustomerFeeMonthOther" >
+    update ppf_customer_fee_month_other
+    set FEE = #{fee,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=SMALLINT},
+      USABLEMONEY = #{usablemoney,jdbcType=DECIMAL},
+      ADDTIME = #{addtime,jdbcType=TIMESTAMP},
+      BILLTIME = #{billtime,jdbcType=TIMESTAMP},
+      CUTSTATUS = #{cutstatus,jdbcType=SMALLINT},
+      CUTTIME = #{cuttime,jdbcType=TIMESTAMP}
+    where CUSTOMERID = #{customerid,jdbcType=INTEGER}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=SMALLINT}
+  </update>
+  <!-- add -->
+  <select id="queryBankBills" resultType="com.holley.emcpshare.model.bank.BankBill">
+	select 
+	customer.CUSTOMERID customerId,customer.HH hh,customer.HM hm,customer.ADDRESS address,
+	monthother.DATATIME dataTime,monthotherdetail.STARTBM preNum,
+	monthotherdetail.ENDBM currentNum,0 otherNum,monthotherdetail.USED realNum,
+	price.VALUE1 price,monthother.FEE money,surcharge.MONEY rebate,
+	customer.CARDNO cardNum,monthother.CUTSTATUS cutstatus,monthother.ENERGYTYPE energytype
+	from 
+	ppf_customer_fee_month_other monthother
+	left join 
+	ppf_customer_fee_month_detail_other monthotherdetail
+	ON (monthother.CUSTOMERID = monthotherdetail.CUSTOMERID AND monthother.DATATIME = monthotherdetail.DATATIME AND monthother.ENERGYTYPE = monthotherdetail.ENERGYTYPE)
+	left join
+	ppf_customer customer
+	on monthother.CUSTOMERID = customer.CUSTOMERID
+	left join
+	ppf_price_rule_other price
+	ON monthotherdetail.PRICEID = price.PRICEID
+	left join ppf_surcharge surcharge
+	on (monthother.CUSTOMERID = surcharge.CUSTOMER_ID AND monthother.DATATIME = surcharge.DATA_TIME AND monthother.ENERGYTYPE = surcharge.ENERGY_TYPE)
+	where customer.CARDNO != ''
+	and monthother.ENERGYTYPE = #{energyType}
+	and monthother.STATUS = #{feeCheckStatus}
+	and (monthother.CUTSTATUS is null or monthother.CUTSTATUS != 2)
+	and customer.EID=#{eid}
+	and customer.STATUS &gt; 0
+  </select>
+  <select id="selectCustomerFeeMonthOther" resultType="com.holley.emcpshare.model.bank.BankSurchargeVo">
+  	select feeMonthOther.CUSTOMERID customerId,feeMonthOther.DATATIME dataTime,feeMonthOther.ENERGYTYPE energyType,
+  	billResult.CUT_COUNT cutCount,billResult.ADD_TIME addTime,billResult.UPDATE_TIME updateTime,feeMonthOther.FEE fee
+	from ppf_customer_fee_month_other feeMonthOther
+	left join
+	ppf_customer customer
+	on
+	feeMonthOther.CUSTOMERID = customer.CUSTOMERID
+	left join
+	ppf_bill_result billResult
+	on
+	(billResult.CUSTOMER_ID = feeMonthOther.CUSTOMERID and billResult.DATA_TIME = feeMonthOther.DATATIME and billResult.ENERGY_TYPE = feeMonthOther.ENERGYTYPE)
+	where customer.EID = #{eid}
+	and feeMonthOther.CUTSTATUS = #{cutStatus}
+	and feeMonthOther.ENERGYTYPE = #{energyType}
+	and billResult.CUT_COUNT &gt;= #{cutCount}
+	and timestampdiff(month,billResult.ADD_TIME,billResult.UPDATE_TIME) &gt;= #{delayMonth}
+  </select>
+  
+  
+  <update id="updateSuccessCustomerFeeMonthOtherByBatch"> 
+    <foreach collection="list" separator=";" item="item">  
+        update ppf_customer_fee_month_other set
+        CUTTIME = now(),
+        CUTSTATUS = 2
+        where CUSTOMERID = #{item.customerId} 
+        and DATATIME = #{item.dataTime}
+        and STATUS = 2
+        and CUTSTATUS != 2
+    </foreach>  
+  </update>
+  
+  <update id="updateUnSuccessCustomerFeeMonthOtherByBatch">  
+    <foreach collection="list" separator=";" item="item">  
+        update ppf_customer_fee_month_other set
+        CUTTIME = now(),
+        CUTSTATUS = 3
+        where CUSTOMERID = #{item.customerId} 
+        and DATATIME = #{item.dataTime}
+        and STATUS = 2
+        and CUTSTATUS != 2
+    </foreach>  
+  </update> 
+   <!-- 更新无需扣款的状态为扣款成功 -->
+  <update id="updateDispenseCustomerFeeMonthOtherByBatch">
+    <foreach collection="list" separator=";" item="item">  
+        update ppf_customer_fee_month_other set
+        CUTTIME = now(),
+        CUTSTATUS = 2
+        where CUSTOMERID = #{item.customerId} 
+        and DATATIME = #{item.dataTime}
+        and STATUS = 2
+        and #{item.money} &lt;= 0 
+    </foreach>  
+  </update> 
+   
+  <update id="updateUncutCustomerFeeMonthOtherByBatch">  
+    <foreach collection="list" separator=";" item="item">  
+        update ppf_customer_fee_month_other set
+        CUTTIME = now(),
+        CUTSTATUS = 1
+        where CUSTOMERID = #{item.customerId} 
+        and DATATIME = #{item.dataTime}
+        and STATUS = 2
+    </foreach>  
+  </update> 
+</mapper>

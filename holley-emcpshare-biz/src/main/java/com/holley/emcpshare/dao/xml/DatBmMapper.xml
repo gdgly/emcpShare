@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.DatBmMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.DatBm" >
+    <id column="DATAITEM" property="dataitem" jdbcType="DECIMAL" />
+    <id column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <id column="ENERGYTYPE" property="energytype" jdbcType="DECIMAL" />
+    <id column="POINTID" property="pointid" jdbcType="DECIMAL" />
+    <result column="BM" property="bm" jdbcType="DECIMAL" />
+    <result column="OLDDATATIME" property="olddatatime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DATAITEM, DATATIME, ENERGYTYPE, POINTID, BM, OLDDATATIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatBmExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dat_bm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatBmKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from dat_bm
+    where DATAITEM = #{dataitem,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.DatBmKey" >
+    delete from dat_bm
+    where DATAITEM = #{dataitem,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.DatBmExample" >
+    delete from dat_bm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.DatBm" >
+    insert into dat_bm (DATAITEM, DATATIME, ENERGYTYPE, 
+      POINTID, BM, OLDDATATIME
+      )
+    values (#{dataitem,jdbcType=DECIMAL}, #{datatime,jdbcType=TIMESTAMP}, #{energytype,jdbcType=DECIMAL}, 
+      #{pointid,jdbcType=DECIMAL}, #{bm,jdbcType=DECIMAL}, #{olddatatime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.DatBm" >
+    insert into dat_bm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dataitem != null" >
+        DATAITEM,
+      </if>
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="energytype != null" >
+        ENERGYTYPE,
+      </if>
+      <if test="pointid != null" >
+        POINTID,
+      </if>
+      <if test="bm != null" >
+        BM,
+      </if>
+      <if test="olddatatime != null" >
+        OLDDATATIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dataitem != null" >
+        #{dataitem,jdbcType=DECIMAL},
+      </if>
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="energytype != null" >
+        #{energytype,jdbcType=DECIMAL},
+      </if>
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="bm != null" >
+        #{bm,jdbcType=DECIMAL},
+      </if>
+      <if test="olddatatime != null" >
+        #{olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.DatBmExample" resultType="java.lang.Integer" >
+    select count(*) from dat_bm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dat_bm
+    <set >
+      <if test="record.dataitem != null" >
+        DATAITEM = #{record.dataitem,jdbcType=DECIMAL},
+      </if>
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.energytype != null" >
+        ENERGYTYPE = #{record.energytype,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pointid != null" >
+        POINTID = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bm != null" >
+        BM = #{record.bm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.olddatatime != null" >
+        OLDDATATIME = #{record.olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dat_bm
+    set DATAITEM = #{record.dataitem,jdbcType=DECIMAL},
+      DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      ENERGYTYPE = #{record.energytype,jdbcType=DECIMAL},
+      POINTID = #{record.pointid,jdbcType=DECIMAL},
+      BM = #{record.bm,jdbcType=DECIMAL},
+      OLDDATATIME = #{record.olddatatime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.DatBm" >
+    update dat_bm
+    <set >
+      <if test="bm != null" >
+        BM = #{bm,jdbcType=DECIMAL},
+      </if>
+      <if test="olddatatime != null" >
+        OLDDATATIME = #{olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DATAITEM = #{dataitem,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.DatBm" >
+    update dat_bm
+    set BM = #{bm,jdbcType=DECIMAL},
+      OLDDATATIME = #{olddatatime,jdbcType=TIMESTAMP}
+    where DATAITEM = #{dataitem,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and ENERGYTYPE = #{energytype,jdbcType=DECIMAL}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+  <!-- ADD -->
+    <!-- 查询最近一条电表历史记录 YUNMU-->
+  <select id="selectLastWaterBm" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM dat_bm  
+    WHERE POINTID = #{pointId}
+    AND ENERGYTYPE=2
+	AND DATAITEM=30
+    ORDER BY DATATIME DESC
+    LIMIT 1
+  </select>
+  
+   <!-- 国久数据接口 -->
+   <select id="selectGjHistoryOthertBm" resultType="com.holley.emcpshare.model.def.GuoJiuOtherBmVO">
+	    SELECT commparam.COMMADDR pointId,bm.BM readingPower,bm.DATATIME dataTime,
+	  	point.ADDR address,point.NAME name
+	  	FROM dat_bm bm,obj_point point,obj_point_commparam commparam,
+		(
+		SELECT * FROM view_point 
+		WHERE 
+		objid=(
+		SELECT SUBEUUID
+		FROM obj_subeuu
+		WHERE OWNERTYPE=11 
+		AND eid=#{eid}
+		AND NAME=#{organizationCode}
+		) 
+		AND objtype=12
+		) t
+		WHERE
+		bm.POINTID = point.POINTID
+		AND
+		bm.POINTID = commparam.POINTID
+		AND
+		bm.POINTID=t.pointid
+		AND
+		point.ENERGYTYPEID=#{energyType}
+		AND
+		bm.DATAITEM=#{dataItem}
+		AND
+		point.STATUS=1
+		AND
+	  	bm.DATATIME &gt;= #{startTime}
+	  	AND
+	  	bm.DATATIME &lt;= #{endTime}
+	  	AND commparam.COMMADDR != ''
+   </select>
+</mapper>

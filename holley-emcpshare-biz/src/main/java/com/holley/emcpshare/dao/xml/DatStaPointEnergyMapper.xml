@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.DatStaPointEnergyMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.DatStaPointEnergy" >
+    <id column="CIRCLETYPEID" property="circletypeid" jdbcType="DECIMAL" />
+    <id column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <id column="POINTID" property="pointid" jdbcType="DECIMAL" />
+    <id column="TARRIFTYPEID" property="tarriftypeid" jdbcType="DECIMAL" />
+    <result column="ENERGY_Q" property="energyQ" jdbcType="DECIMAL" />
+    <result column="ENERGY_P" property="energyP" jdbcType="DECIMAL" />
+    <result column="ENERGY_ZY" property="energyZy" jdbcType="DECIMAL" />
+    <result column="ENERGY_FY" property="energyFy" jdbcType="DECIMAL" />
+    <result column="ENERGY_ZW" property="energyZw" jdbcType="DECIMAL" />
+    <result column="ENERGY_FW" property="energyFw" jdbcType="DECIMAL" />
+    <result column="PROP" property="prop" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CIRCLETYPEID, DATATIME, POINTID, TARRIFTYPEID, ENERGY_Q, ENERGY_P, ENERGY_ZY, ENERGY_FY, 
+    ENERGY_ZW, ENERGY_FW, PROP, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatStaPointEnergyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dat_sta_point_energy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatStaPointEnergyKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from dat_sta_point_energy
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.DatStaPointEnergyKey" >
+    delete from dat_sta_point_energy
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.DatStaPointEnergyExample" >
+    delete from dat_sta_point_energy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.DatStaPointEnergy" >
+    insert into dat_sta_point_energy (CIRCLETYPEID, DATATIME, POINTID, 
+      TARRIFTYPEID, ENERGY_Q, ENERGY_P, 
+      ENERGY_ZY, ENERGY_FY, ENERGY_ZW, 
+      ENERGY_FW, PROP, REMARK
+      )
+    values (#{circletypeid,jdbcType=DECIMAL}, #{datatime,jdbcType=TIMESTAMP}, #{pointid,jdbcType=DECIMAL}, 
+      #{tarriftypeid,jdbcType=DECIMAL}, #{energyQ,jdbcType=DECIMAL}, #{energyP,jdbcType=DECIMAL}, 
+      #{energyZy,jdbcType=DECIMAL}, #{energyFy,jdbcType=DECIMAL}, #{energyZw,jdbcType=DECIMAL}, 
+      #{energyFw,jdbcType=DECIMAL}, #{prop,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.DatStaPointEnergy" >
+    insert into dat_sta_point_energy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="circletypeid != null" >
+        CIRCLETYPEID,
+      </if>
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="pointid != null" >
+        POINTID,
+      </if>
+      <if test="tarriftypeid != null" >
+        TARRIFTYPEID,
+      </if>
+      <if test="energyQ != null" >
+        ENERGY_Q,
+      </if>
+      <if test="energyP != null" >
+        ENERGY_P,
+      </if>
+      <if test="energyZy != null" >
+        ENERGY_ZY,
+      </if>
+      <if test="energyFy != null" >
+        ENERGY_FY,
+      </if>
+      <if test="energyZw != null" >
+        ENERGY_ZW,
+      </if>
+      <if test="energyFw != null" >
+        ENERGY_FW,
+      </if>
+      <if test="prop != null" >
+        PROP,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="circletypeid != null" >
+        #{circletypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="tarriftypeid != null" >
+        #{tarriftypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="energyQ != null" >
+        #{energyQ,jdbcType=DECIMAL},
+      </if>
+      <if test="energyP != null" >
+        #{energyP,jdbcType=DECIMAL},
+      </if>
+      <if test="energyZy != null" >
+        #{energyZy,jdbcType=DECIMAL},
+      </if>
+      <if test="energyFy != null" >
+        #{energyFy,jdbcType=DECIMAL},
+      </if>
+      <if test="energyZw != null" >
+        #{energyZw,jdbcType=DECIMAL},
+      </if>
+      <if test="energyFw != null" >
+        #{energyFw,jdbcType=DECIMAL},
+      </if>
+      <if test="prop != null" >
+        #{prop,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.DatStaPointEnergyExample" resultType="java.lang.Integer" >
+    select count(*) from dat_sta_point_energy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dat_sta_point_energy
+    <set >
+      <if test="record.circletypeid != null" >
+        CIRCLETYPEID = #{record.circletypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pointid != null" >
+        POINTID = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tarriftypeid != null" >
+        TARRIFTYPEID = #{record.tarriftypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyQ != null" >
+        ENERGY_Q = #{record.energyQ,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyP != null" >
+        ENERGY_P = #{record.energyP,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyZy != null" >
+        ENERGY_ZY = #{record.energyZy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyFy != null" >
+        ENERGY_FY = #{record.energyFy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyZw != null" >
+        ENERGY_ZW = #{record.energyZw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.energyFw != null" >
+        ENERGY_FW = #{record.energyFw,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prop != null" >
+        PROP = #{record.prop,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dat_sta_point_energy
+    set CIRCLETYPEID = #{record.circletypeid,jdbcType=DECIMAL},
+      DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      POINTID = #{record.pointid,jdbcType=DECIMAL},
+      TARRIFTYPEID = #{record.tarriftypeid,jdbcType=DECIMAL},
+      ENERGY_Q = #{record.energyQ,jdbcType=DECIMAL},
+      ENERGY_P = #{record.energyP,jdbcType=DECIMAL},
+      ENERGY_ZY = #{record.energyZy,jdbcType=DECIMAL},
+      ENERGY_FY = #{record.energyFy,jdbcType=DECIMAL},
+      ENERGY_ZW = #{record.energyZw,jdbcType=DECIMAL},
+      ENERGY_FW = #{record.energyFw,jdbcType=DECIMAL},
+      PROP = #{record.prop,jdbcType=DECIMAL},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.DatStaPointEnergy" >
+    update dat_sta_point_energy
+    <set >
+      <if test="energyQ != null" >
+        ENERGY_Q = #{energyQ,jdbcType=DECIMAL},
+      </if>
+      <if test="energyP != null" >
+        ENERGY_P = #{energyP,jdbcType=DECIMAL},
+      </if>
+      <if test="energyZy != null" >
+        ENERGY_ZY = #{energyZy,jdbcType=DECIMAL},
+      </if>
+      <if test="energyFy != null" >
+        ENERGY_FY = #{energyFy,jdbcType=DECIMAL},
+      </if>
+      <if test="energyZw != null" >
+        ENERGY_ZW = #{energyZw,jdbcType=DECIMAL},
+      </if>
+      <if test="energyFw != null" >
+        ENERGY_FW = #{energyFw,jdbcType=DECIMAL},
+      </if>
+      <if test="prop != null" >
+        PROP = #{prop,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.DatStaPointEnergy" >
+    update dat_sta_point_energy
+    set ENERGY_Q = #{energyQ,jdbcType=DECIMAL},
+      ENERGY_P = #{energyP,jdbcType=DECIMAL},
+      ENERGY_ZY = #{energyZy,jdbcType=DECIMAL},
+      ENERGY_FY = #{energyFy,jdbcType=DECIMAL},
+      ENERGY_ZW = #{energyZw,jdbcType=DECIMAL},
+      ENERGY_FW = #{energyFw,jdbcType=DECIMAL},
+      PROP = #{prop,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where CIRCLETYPEID = #{circletypeid,jdbcType=DECIMAL}
+      and DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+      and TARRIFTYPEID = #{tarriftypeid,jdbcType=DECIMAL}
+  </update>
+</mapper>

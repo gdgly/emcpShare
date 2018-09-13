@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.ObjSleepCmdMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.ObjSleepCmd" >
+    <id column="CMDTYPE" property="cmdtype" jdbcType="SMALLINT" />
+    <id column="CREATETIME" property="createtime" jdbcType="TIMESTAMP" />
+    <id column="OBJID" property="objid" jdbcType="INTEGER" />
+    <id column="OBJTYPE" property="objtype" jdbcType="SMALLINT" />
+    <result column="SENDTYPE" property="sendtype" jdbcType="SMALLINT" />
+    <result column="PARAMS" property="params" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="SMALLINT" />
+    <result column="EXECUTETIME" property="executetime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CMDTYPE, CREATETIME, OBJID, OBJTYPE, SENDTYPE, PARAMS, STATUS, EXECUTETIME, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.ObjSleepCmdExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from obj_sleep_cmd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.ObjSleepCmdKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from obj_sleep_cmd
+    where CMDTYPE = #{cmdtype,jdbcType=SMALLINT}
+      and CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+      and OBJID = #{objid,jdbcType=INTEGER}
+      and OBJTYPE = #{objtype,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.ObjSleepCmdKey" >
+    delete from obj_sleep_cmd
+    where CMDTYPE = #{cmdtype,jdbcType=SMALLINT}
+      and CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+      and OBJID = #{objid,jdbcType=INTEGER}
+      and OBJTYPE = #{objtype,jdbcType=SMALLINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.ObjSleepCmdExample" >
+    delete from obj_sleep_cmd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.ObjSleepCmd" >
+    insert into obj_sleep_cmd (CMDTYPE, CREATETIME, OBJID, 
+      OBJTYPE, SENDTYPE, PARAMS, 
+      STATUS, EXECUTETIME, REMARK
+      )
+    values (#{cmdtype,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP}, #{objid,jdbcType=INTEGER}, 
+      #{objtype,jdbcType=SMALLINT}, #{sendtype,jdbcType=SMALLINT}, #{params,jdbcType=VARCHAR}, 
+      #{status,jdbcType=SMALLINT}, #{executetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.ObjSleepCmd" >
+    insert into obj_sleep_cmd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmdtype != null" >
+        CMDTYPE,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="objid != null" >
+        OBJID,
+      </if>
+      <if test="objtype != null" >
+        OBJTYPE,
+      </if>
+      <if test="sendtype != null" >
+        SENDTYPE,
+      </if>
+      <if test="params != null" >
+        PARAMS,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="executetime != null" >
+        EXECUTETIME,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmdtype != null" >
+        #{cmdtype,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objid != null" >
+        #{objid,jdbcType=INTEGER},
+      </if>
+      <if test="objtype != null" >
+        #{objtype,jdbcType=SMALLINT},
+      </if>
+      <if test="sendtype != null" >
+        #{sendtype,jdbcType=SMALLINT},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="executetime != null" >
+        #{executetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.ObjSleepCmdExample" resultType="java.lang.Integer" >
+    select count(*) from obj_sleep_cmd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update obj_sleep_cmd
+    <set >
+      <if test="record.cmdtype != null" >
+        CMDTYPE = #{record.cmdtype,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createtime != null" >
+        CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.objid != null" >
+        OBJID = #{record.objid,jdbcType=INTEGER},
+      </if>
+      <if test="record.objtype != null" >
+        OBJTYPE = #{record.objtype,jdbcType=SMALLINT},
+      </if>
+      <if test="record.sendtype != null" >
+        SENDTYPE = #{record.sendtype,jdbcType=SMALLINT},
+      </if>
+      <if test="record.params != null" >
+        PARAMS = #{record.params,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.executetime != null" >
+        EXECUTETIME = #{record.executetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update obj_sleep_cmd
+    set CMDTYPE = #{record.cmdtype,jdbcType=SMALLINT},
+      CREATETIME = #{record.createtime,jdbcType=TIMESTAMP},
+      OBJID = #{record.objid,jdbcType=INTEGER},
+      OBJTYPE = #{record.objtype,jdbcType=SMALLINT},
+      SENDTYPE = #{record.sendtype,jdbcType=SMALLINT},
+      PARAMS = #{record.params,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=SMALLINT},
+      EXECUTETIME = #{record.executetime,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.ObjSleepCmd" >
+    update obj_sleep_cmd
+    <set >
+      <if test="sendtype != null" >
+        SENDTYPE = #{sendtype,jdbcType=SMALLINT},
+      </if>
+      <if test="params != null" >
+        PARAMS = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="executetime != null" >
+        EXECUTETIME = #{executetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CMDTYPE = #{cmdtype,jdbcType=SMALLINT}
+      and CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+      and OBJID = #{objid,jdbcType=INTEGER}
+      and OBJTYPE = #{objtype,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.ObjSleepCmd" >
+    update obj_sleep_cmd
+    set SENDTYPE = #{sendtype,jdbcType=SMALLINT},
+      PARAMS = #{params,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=SMALLINT},
+      EXECUTETIME = #{executetime,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where CMDTYPE = #{cmdtype,jdbcType=SMALLINT}
+      and CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+      and OBJID = #{objid,jdbcType=INTEGER}
+      and OBJTYPE = #{objtype,jdbcType=SMALLINT}
+  </update>
+</mapper>

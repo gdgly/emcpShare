@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.PpfCustomerFeeChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.PpfCustomerFeeChange" >
+    <id column="CHARGEID" property="chargeid" jdbcType="INTEGER" />
+    <result column="CUSTOMERID" property="customerid" jdbcType="DECIMAL" />
+    <result column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="MONEY" property="money" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="USABLEMONEY" property="usablemoney" jdbcType="DECIMAL" />
+    <result column="ADDTIME" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="ENERGYTYPE" property="energytype" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CHARGEID, CUSTOMERID, DATATIME, TYPE, MONEY, REMARK, USABLEMONEY, ADDTIME, ACCOUNT, 
+    ENERGYTYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.PpfCustomerFeeChangeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ppf_customer_fee_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ppf_customer_fee_change
+    where CHARGEID = #{chargeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ppf_customer_fee_change
+    where CHARGEID = #{chargeid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.PpfCustomerFeeChangeExample" >
+    delete from ppf_customer_fee_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.PpfCustomerFeeChange" >
+    insert into ppf_customer_fee_change (CHARGEID, CUSTOMERID, DATATIME, 
+      TYPE, MONEY, REMARK, 
+      USABLEMONEY, ADDTIME, ACCOUNT, 
+      ENERGYTYPE)
+    values (#{chargeid,jdbcType=INTEGER}, #{customerid,jdbcType=DECIMAL}, #{datatime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=DECIMAL}, #{money,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{usablemoney,jdbcType=DECIMAL}, #{addtime,jdbcType=TIMESTAMP}, #{account,jdbcType=VARCHAR}, 
+      #{energytype,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.PpfCustomerFeeChange" >
+    insert into ppf_customer_fee_change
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chargeid != null" >
+        CHARGEID,
+      </if>
+      <if test="customerid != null" >
+        CUSTOMERID,
+      </if>
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="money != null" >
+        MONEY,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="usablemoney != null" >
+        USABLEMONEY,
+      </if>
+      <if test="addtime != null" >
+        ADDTIME,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="energytype != null" >
+        ENERGYTYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chargeid != null" >
+        #{chargeid,jdbcType=INTEGER},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=DECIMAL},
+      </if>
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="usablemoney != null" >
+        #{usablemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="energytype != null" >
+        #{energytype,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.PpfCustomerFeeChangeExample" resultType="java.lang.Integer" >
+    select count(*) from ppf_customer_fee_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ppf_customer_fee_change
+    <set >
+      <if test="record.chargeid != null" >
+        CHARGEID = #{record.chargeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerid != null" >
+        CUSTOMERID = #{record.customerid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=DECIMAL},
+      </if>
+      <if test="record.money != null" >
+        MONEY = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usablemoney != null" >
+        USABLEMONEY = #{record.usablemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addtime != null" >
+        ADDTIME = #{record.addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.account != null" >
+        ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.energytype != null" >
+        ENERGYTYPE = #{record.energytype,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ppf_customer_fee_change
+    set CHARGEID = #{record.chargeid,jdbcType=INTEGER},
+      CUSTOMERID = #{record.customerid,jdbcType=DECIMAL},
+      DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      TYPE = #{record.type,jdbcType=DECIMAL},
+      MONEY = #{record.money,jdbcType=DECIMAL},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      USABLEMONEY = #{record.usablemoney,jdbcType=DECIMAL},
+      ADDTIME = #{record.addtime,jdbcType=TIMESTAMP},
+      ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      ENERGYTYPE = #{record.energytype,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.PpfCustomerFeeChange" >
+    update ppf_customer_fee_change
+    <set >
+      <if test="customerid != null" >
+        CUSTOMERID = #{customerid,jdbcType=DECIMAL},
+      </if>
+      <if test="datatime != null" >
+        DATATIME = #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null" >
+        MONEY = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="usablemoney != null" >
+        USABLEMONEY = #{usablemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        ADDTIME = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="energytype != null" >
+        ENERGYTYPE = #{energytype,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where CHARGEID = #{chargeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.PpfCustomerFeeChange" >
+    update ppf_customer_fee_change
+    set CUSTOMERID = #{customerid,jdbcType=DECIMAL},
+      DATATIME = #{datatime,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=DECIMAL},
+      MONEY = #{money,jdbcType=DECIMAL},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      USABLEMONEY = #{usablemoney,jdbcType=DECIMAL},
+      ADDTIME = #{addtime,jdbcType=TIMESTAMP},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      ENERGYTYPE = #{energytype,jdbcType=SMALLINT}
+    where CHARGEID = #{chargeid,jdbcType=INTEGER}
+  </update>
+</mapper>

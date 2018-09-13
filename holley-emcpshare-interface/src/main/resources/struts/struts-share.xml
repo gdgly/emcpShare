@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+<struts>
+	<package name="emcpshare" namespace="/v1" extends="json-base">
+		<!-- OPEN1 START -->
+		<!-- 获取token -->
+		<action name="query_token" class="serviceAction" method="queryToken">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 账户充值 -->
+		<action name="account_recharge" class="serviceAction" method="accountRecharge">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 远程拉合闸 -->
+		<action name="remote_disconnect" class="serviceAction" method="remoteDisconnect">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询电费月账单信息 -->
+		<action name="query_monthlyPowerBill_info" class="shareAction" method="queryMonthlyPowerBillInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		
+		<!-- 查询电费月账单信息 -->
+		<action name="query_monthlyWaterBill_info" class="shareAction" method="queryMonthlyWaterBillInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询用户账户信息 -->
+		<action name="query_account_info" class="shareAction" method="queryAccountInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- OPEN1 END -->
+		
+		<!-- OPEN2 START -->
+		<!-- 根据设备编号单个电表最新电表数据 -->
+		<action name="query_realElectricity_info" class="shareAction" method="queryRealElectricityInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询电表历史数据 -->
+		<action name="query_historyElectricity_info" class="shareAction" method="queryHistoryElectricityInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询电表最近历史数据 -->
+		<action name="query_lastHistoryElectricity_info" class="shareAction" method="queryLastHistoryElectricityInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- OPEN2 END -->
+		
+		<!-- OPEN3 START -->
+		<!-- 根据地址信息查询单个电表最新数据 -->
+		<action name="query_realElectricityData_info" class="shareAction" method="queryRealElectricityDataInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 根据地址信息查询电表最新数据列表 -->
+		<action name="query_electricityDataList_info" class="shareAction" method="queryElectricityDataListInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询企业下所有电表最新数据列表  取消-->
+	<!-- 	<action name="query_allElectricityDataList_info" class="shareAction" method="queryAllElectricityDataListInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action> -->
+		<!-- OPEN3 END -->
+		<!-- OPEN4 START -->
+		<!-- 查询某个电表最新历史记录所有信息（电压电流表码等信息） -->
+		<action name="query_allLastHistoryElectricity_info" class="shareAction" method="queryAllLastHistoryElectricityInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		
+		<!-- 查询充值记录 -->
+		<action name="query_accountRecharge_info" class="shareAction" method="queryAccountRechargeInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 用户注册 -->
+		<action name="account_register" class="serviceAction" method="accountRegister">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 用户修改-->
+		<action name="account_modify" class="serviceAction" method="accountModify">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询电表日数据 -->
+		<action name="query_dayPowerData_info" class="shareAction" method="queryDayPowerDataInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询水表日数据 -->
+		<action name="query_dayWaterData_info" class="shareAction" method="queryDayWaterDataInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		
+		<!-- 查询用户基本信息及余额 -->
+		<action name="query_useraccount_info" class="shareAction" method="queryUseraccountInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		
+		<!-- 根据企业EID批量查询电表最新数据 -->
+		<action name="query_lastHistoryElectricity_infoBatch" class="shareAction" method="queryLastHistoryElectricityInfoBatch">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 虹桥机场接口start -->
+		<action name="query_power_zhbm_info" class="shareAction" method="queryPowerZhBmInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 虹桥机场接口end -->
+		<!-- 国久数据接口start -->
+		<action name="query_realOrHistoryPowerBm_info" class="shareAction" method="queryRealOrHistoryPowerBmInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<action name="query_realOrHistoryWaterBm_info" class="shareAction" method="queryRealOrHistoryWaterBmInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<action name="query_realOrHistoryGasBm_info" class="shareAction" method="queryRealOrHistoryGasBmInfo">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 国久数据接口end -->
+	</package>	
+</struts>

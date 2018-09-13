@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+<struts>
+	<package name="base" namespace="/base" extends="json-base">
+		<!-- 用户登录 -->
+		<action name="login" class="icmAction" method="login">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+	</package>
+	<package name="icm" namespace="/icm" extends="json-base">
+		<!-- 分页查询最近购电记录 -->
+		<action name="history" class="icmAction" method="history">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 分页查询电表的购电记录 -->
+		<action name="purchaseHistory" class="icmAction" method="purchaseHistory">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 制作清零卡 -->
+		<action name="makeClearCard" class="icmAction" method="makeClearCard">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 制作预置卡 -->
+		<action name="makePresetCard" class="icmAction" method="makePresetCard">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 开户 -->
+		<action name="openAccount" class="icmAction" method="openAccount">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 补购电卡  -->
+		<action name="replaceCard" class="icmAction" method="replaceCard">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 读卡返写 -->
+		<action name="addPurchaseHistory" class="icmAction" method="addPurchaseHistory">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 购电 -->
+		<action name="buyEnergy" class="icmAction" method="buyEnergy">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+	</package>
+	<package name="doc" namespace="/doc" extends="json-base">
+		<!-- 分页查询用户信息 -->
+		<action name="customerList" class="icmAction" method="customerList">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 分页查询电表信息 -->
+		<action name="meterList" class="icmAction" method="meterList">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 查询单个用户信息 -->
+		<action name="customer" class="icmAction" method="customer">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<action name="meter" class="icmAction" method="meter">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+		<!-- 获取用能单位树 -->
+		<action name="energyUnitTree" class="icmAction" method="energyUnitTree">
+			<result type="json">
+			 <param name="root">resultBean</param>  
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.PpfBillPushReturnMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.PpfBillPushReturn" >
+    <id column="ADD_TIME" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="TYPE" property="type" jdbcType="SMALLINT" />
+    <result column="ENERGY_TYPE" property="energyType" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.holley.emcpshare.model.PpfBillPushReturn" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ADD_TIME, TYPE, ENERGY_TYPE
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.holley.emcpshare.model.PpfBillPushReturnExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ppf_bill_push_return
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.PpfBillPushReturnExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ppf_bill_push_return
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.util.Date" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ppf_bill_push_return
+    where ADD_TIME = #{addTime,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date" >
+    delete from ppf_bill_push_return
+    where ADD_TIME = #{addTime,jdbcType=TIMESTAMP}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.PpfBillPushReturnExample" >
+    delete from ppf_bill_push_return
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.PpfBillPushReturn" >
+    insert into ppf_bill_push_return (ADD_TIME, TYPE, ENERGY_TYPE, 
+      CONTENT)
+    values (#{addTime,jdbcType=TIMESTAMP}, #{type,jdbcType=SMALLINT}, #{energyType,jdbcType=SMALLINT}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.PpfBillPushReturn" >
+    insert into ppf_bill_push_return
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addTime != null" >
+        ADD_TIME,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="energyType != null" >
+        ENERGY_TYPE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="energyType != null" >
+        #{energyType,jdbcType=SMALLINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.PpfBillPushReturnExample" resultType="java.lang.Integer" >
+    select count(*) from ppf_bill_push_return
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ppf_bill_push_return
+    <set >
+      <if test="record.addTime != null" >
+        ADD_TIME = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=SMALLINT},
+      </if>
+      <if test="record.energyType != null" >
+        ENERGY_TYPE = #{record.energyType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ppf_bill_push_return
+    set ADD_TIME = #{record.addTime,jdbcType=TIMESTAMP},
+      TYPE = #{record.type,jdbcType=SMALLINT},
+      ENERGY_TYPE = #{record.energyType,jdbcType=SMALLINT},
+      CONTENT = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ppf_bill_push_return
+    set ADD_TIME = #{record.addTime,jdbcType=TIMESTAMP},
+      TYPE = #{record.type,jdbcType=SMALLINT},
+      ENERGY_TYPE = #{record.energyType,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.PpfBillPushReturn" >
+    update ppf_bill_push_return
+    <set >
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="energyType != null" >
+        ENERGY_TYPE = #{energyType,jdbcType=SMALLINT},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ADD_TIME = #{addTime,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.holley.emcpshare.model.PpfBillPushReturn" >
+    update ppf_bill_push_return
+    set TYPE = #{type,jdbcType=SMALLINT},
+      ENERGY_TYPE = #{energyType,jdbcType=SMALLINT},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where ADD_TIME = #{addTime,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.PpfBillPushReturn" >
+    update ppf_bill_push_return
+    set TYPE = #{type,jdbcType=SMALLINT},
+      ENERGY_TYPE = #{energyType,jdbcType=SMALLINT}
+    where ADD_TIME = #{addTime,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

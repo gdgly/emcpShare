@@ -1,0 +1,8 @@
+以下测试商户信息：
+访问地址：http://183.129.224.70:4880/emcp/v1/query_token
+商户编号（operatorId）：348375729
+商户密钥（operatorSecret）：07vljWeJ0Pb9DMsl
+消息密钥（dataSecret）：e6WDmy5qBiNFMBEE
+消息密钥初始化向量（dataSecretIV）：6eYkVPdMxcM2wmh4
+签名密钥（sigSecret）：9eNZJJ2pZuMANzbm
+

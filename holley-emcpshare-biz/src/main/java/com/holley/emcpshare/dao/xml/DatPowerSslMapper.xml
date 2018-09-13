@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.DatPowerSslMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.DatPowerSsl" >
+    <id column="DATATIME" property="datatime" jdbcType="TIMESTAMP" />
+    <id column="POINTID" property="pointid" jdbcType="DECIMAL" />
+    <result column="P" property="p" jdbcType="DECIMAL" />
+    <result column="PA" property="pa" jdbcType="DECIMAL" />
+    <result column="PB" property="pb" jdbcType="DECIMAL" />
+    <result column="PC" property="pc" jdbcType="DECIMAL" />
+    <result column="Q" property="q" jdbcType="DECIMAL" />
+    <result column="QA" property="qa" jdbcType="DECIMAL" />
+    <result column="QB" property="qb" jdbcType="DECIMAL" />
+    <result column="QC" property="qc" jdbcType="DECIMAL" />
+    <result column="IA" property="ia" jdbcType="DECIMAL" />
+    <result column="IB" property="ib" jdbcType="DECIMAL" />
+    <result column="IC" property="ic" jdbcType="DECIMAL" />
+    <result column="IZ" property="iz" jdbcType="DECIMAL" />
+    <result column="UA" property="ua" jdbcType="DECIMAL" />
+    <result column="UB" property="ub" jdbcType="DECIMAL" />
+    <result column="UC" property="uc" jdbcType="DECIMAL" />
+    <result column="PF" property="pf" jdbcType="DECIMAL" />
+    <result column="PFA" property="pfa" jdbcType="DECIMAL" />
+    <result column="PFB" property="pfb" jdbcType="DECIMAL" />
+    <result column="PFC" property="pfc" jdbcType="DECIMAL" />
+    <result column="OLDDATATIME" property="olddatatime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    DATATIME, POINTID, P, PA, PB, PC, Q, QA, QB, QC, IA, IB, IC, IZ, UA, UB, UC, PF, 
+    PFA, PFB, PFC, OLDDATATIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatPowerSslExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dat_power_ssl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.DatPowerSslKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from dat_power_ssl
+    where DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.emcpshare.model.DatPowerSslKey" >
+    delete from dat_power_ssl
+    where DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.DatPowerSslExample" >
+    delete from dat_power_ssl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.DatPowerSsl" >
+    insert into dat_power_ssl (DATATIME, POINTID, P, 
+      PA, PB, PC, Q, 
+      QA, QB, QC, IA, 
+      IB, IC, IZ, UA, 
+      UB, UC, PF, PFA, 
+      PFB, PFC, OLDDATATIME
+      )
+    values (#{datatime,jdbcType=TIMESTAMP}, #{pointid,jdbcType=DECIMAL}, #{p,jdbcType=DECIMAL}, 
+      #{pa,jdbcType=DECIMAL}, #{pb,jdbcType=DECIMAL}, #{pc,jdbcType=DECIMAL}, #{q,jdbcType=DECIMAL}, 
+      #{qa,jdbcType=DECIMAL}, #{qb,jdbcType=DECIMAL}, #{qc,jdbcType=DECIMAL}, #{ia,jdbcType=DECIMAL}, 
+      #{ib,jdbcType=DECIMAL}, #{ic,jdbcType=DECIMAL}, #{iz,jdbcType=DECIMAL}, #{ua,jdbcType=DECIMAL}, 
+      #{ub,jdbcType=DECIMAL}, #{uc,jdbcType=DECIMAL}, #{pf,jdbcType=DECIMAL}, #{pfa,jdbcType=DECIMAL}, 
+      #{pfb,jdbcType=DECIMAL}, #{pfc,jdbcType=DECIMAL}, #{olddatatime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.DatPowerSsl" >
+    insert into dat_power_ssl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="datatime != null" >
+        DATATIME,
+      </if>
+      <if test="pointid != null" >
+        POINTID,
+      </if>
+      <if test="p != null" >
+        P,
+      </if>
+      <if test="pa != null" >
+        PA,
+      </if>
+      <if test="pb != null" >
+        PB,
+      </if>
+      <if test="pc != null" >
+        PC,
+      </if>
+      <if test="q != null" >
+        Q,
+      </if>
+      <if test="qa != null" >
+        QA,
+      </if>
+      <if test="qb != null" >
+        QB,
+      </if>
+      <if test="qc != null" >
+        QC,
+      </if>
+      <if test="ia != null" >
+        IA,
+      </if>
+      <if test="ib != null" >
+        IB,
+      </if>
+      <if test="ic != null" >
+        IC,
+      </if>
+      <if test="iz != null" >
+        IZ,
+      </if>
+      <if test="ua != null" >
+        UA,
+      </if>
+      <if test="ub != null" >
+        UB,
+      </if>
+      <if test="uc != null" >
+        UC,
+      </if>
+      <if test="pf != null" >
+        PF,
+      </if>
+      <if test="pfa != null" >
+        PFA,
+      </if>
+      <if test="pfb != null" >
+        PFB,
+      </if>
+      <if test="pfc != null" >
+        PFC,
+      </if>
+      <if test="olddatatime != null" >
+        OLDDATATIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="datatime != null" >
+        #{datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="p != null" >
+        #{p,jdbcType=DECIMAL},
+      </if>
+      <if test="pa != null" >
+        #{pa,jdbcType=DECIMAL},
+      </if>
+      <if test="pb != null" >
+        #{pb,jdbcType=DECIMAL},
+      </if>
+      <if test="pc != null" >
+        #{pc,jdbcType=DECIMAL},
+      </if>
+      <if test="q != null" >
+        #{q,jdbcType=DECIMAL},
+      </if>
+      <if test="qa != null" >
+        #{qa,jdbcType=DECIMAL},
+      </if>
+      <if test="qb != null" >
+        #{qb,jdbcType=DECIMAL},
+      </if>
+      <if test="qc != null" >
+        #{qc,jdbcType=DECIMAL},
+      </if>
+      <if test="ia != null" >
+        #{ia,jdbcType=DECIMAL},
+      </if>
+      <if test="ib != null" >
+        #{ib,jdbcType=DECIMAL},
+      </if>
+      <if test="ic != null" >
+        #{ic,jdbcType=DECIMAL},
+      </if>
+      <if test="iz != null" >
+        #{iz,jdbcType=DECIMAL},
+      </if>
+      <if test="ua != null" >
+        #{ua,jdbcType=DECIMAL},
+      </if>
+      <if test="ub != null" >
+        #{ub,jdbcType=DECIMAL},
+      </if>
+      <if test="uc != null" >
+        #{uc,jdbcType=DECIMAL},
+      </if>
+      <if test="pf != null" >
+        #{pf,jdbcType=DECIMAL},
+      </if>
+      <if test="pfa != null" >
+        #{pfa,jdbcType=DECIMAL},
+      </if>
+      <if test="pfb != null" >
+        #{pfb,jdbcType=DECIMAL},
+      </if>
+      <if test="pfc != null" >
+        #{pfc,jdbcType=DECIMAL},
+      </if>
+      <if test="olddatatime != null" >
+        #{olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.DatPowerSslExample" resultType="java.lang.Integer" >
+    select count(*) from dat_power_ssl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dat_power_ssl
+    <set >
+      <if test="record.datatime != null" >
+        DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pointid != null" >
+        POINTID = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.p != null" >
+        P = #{record.p,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pa != null" >
+        PA = #{record.pa,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pb != null" >
+        PB = #{record.pb,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pc != null" >
+        PC = #{record.pc,jdbcType=DECIMAL},
+      </if>
+      <if test="record.q != null" >
+        Q = #{record.q,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qa != null" >
+        QA = #{record.qa,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qb != null" >
+        QB = #{record.qb,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qc != null" >
+        QC = #{record.qc,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ia != null" >
+        IA = #{record.ia,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ib != null" >
+        IB = #{record.ib,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ic != null" >
+        IC = #{record.ic,jdbcType=DECIMAL},
+      </if>
+      <if test="record.iz != null" >
+        IZ = #{record.iz,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ua != null" >
+        UA = #{record.ua,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ub != null" >
+        UB = #{record.ub,jdbcType=DECIMAL},
+      </if>
+      <if test="record.uc != null" >
+        UC = #{record.uc,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pf != null" >
+        PF = #{record.pf,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pfa != null" >
+        PFA = #{record.pfa,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pfb != null" >
+        PFB = #{record.pfb,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pfc != null" >
+        PFC = #{record.pfc,jdbcType=DECIMAL},
+      </if>
+      <if test="record.olddatatime != null" >
+        OLDDATATIME = #{record.olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dat_power_ssl
+    set DATATIME = #{record.datatime,jdbcType=TIMESTAMP},
+      POINTID = #{record.pointid,jdbcType=DECIMAL},
+      P = #{record.p,jdbcType=DECIMAL},
+      PA = #{record.pa,jdbcType=DECIMAL},
+      PB = #{record.pb,jdbcType=DECIMAL},
+      PC = #{record.pc,jdbcType=DECIMAL},
+      Q = #{record.q,jdbcType=DECIMAL},
+      QA = #{record.qa,jdbcType=DECIMAL},
+      QB = #{record.qb,jdbcType=DECIMAL},
+      QC = #{record.qc,jdbcType=DECIMAL},
+      IA = #{record.ia,jdbcType=DECIMAL},
+      IB = #{record.ib,jdbcType=DECIMAL},
+      IC = #{record.ic,jdbcType=DECIMAL},
+      IZ = #{record.iz,jdbcType=DECIMAL},
+      UA = #{record.ua,jdbcType=DECIMAL},
+      UB = #{record.ub,jdbcType=DECIMAL},
+      UC = #{record.uc,jdbcType=DECIMAL},
+      PF = #{record.pf,jdbcType=DECIMAL},
+      PFA = #{record.pfa,jdbcType=DECIMAL},
+      PFB = #{record.pfb,jdbcType=DECIMAL},
+      PFC = #{record.pfc,jdbcType=DECIMAL},
+      OLDDATATIME = #{record.olddatatime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.DatPowerSsl" >
+    update dat_power_ssl
+    <set >
+      <if test="p != null" >
+        P = #{p,jdbcType=DECIMAL},
+      </if>
+      <if test="pa != null" >
+        PA = #{pa,jdbcType=DECIMAL},
+      </if>
+      <if test="pb != null" >
+        PB = #{pb,jdbcType=DECIMAL},
+      </if>
+      <if test="pc != null" >
+        PC = #{pc,jdbcType=DECIMAL},
+      </if>
+      <if test="q != null" >
+        Q = #{q,jdbcType=DECIMAL},
+      </if>
+      <if test="qa != null" >
+        QA = #{qa,jdbcType=DECIMAL},
+      </if>
+      <if test="qb != null" >
+        QB = #{qb,jdbcType=DECIMAL},
+      </if>
+      <if test="qc != null" >
+        QC = #{qc,jdbcType=DECIMAL},
+      </if>
+      <if test="ia != null" >
+        IA = #{ia,jdbcType=DECIMAL},
+      </if>
+      <if test="ib != null" >
+        IB = #{ib,jdbcType=DECIMAL},
+      </if>
+      <if test="ic != null" >
+        IC = #{ic,jdbcType=DECIMAL},
+      </if>
+      <if test="iz != null" >
+        IZ = #{iz,jdbcType=DECIMAL},
+      </if>
+      <if test="ua != null" >
+        UA = #{ua,jdbcType=DECIMAL},
+      </if>
+      <if test="ub != null" >
+        UB = #{ub,jdbcType=DECIMAL},
+      </if>
+      <if test="uc != null" >
+        UC = #{uc,jdbcType=DECIMAL},
+      </if>
+      <if test="pf != null" >
+        PF = #{pf,jdbcType=DECIMAL},
+      </if>
+      <if test="pfa != null" >
+        PFA = #{pfa,jdbcType=DECIMAL},
+      </if>
+      <if test="pfb != null" >
+        PFB = #{pfb,jdbcType=DECIMAL},
+      </if>
+      <if test="pfc != null" >
+        PFC = #{pfc,jdbcType=DECIMAL},
+      </if>
+      <if test="olddatatime != null" >
+        OLDDATATIME = #{olddatatime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.DatPowerSsl" >
+    update dat_power_ssl
+    set P = #{p,jdbcType=DECIMAL},
+      PA = #{pa,jdbcType=DECIMAL},
+      PB = #{pb,jdbcType=DECIMAL},
+      PC = #{pc,jdbcType=DECIMAL},
+      Q = #{q,jdbcType=DECIMAL},
+      QA = #{qa,jdbcType=DECIMAL},
+      QB = #{qb,jdbcType=DECIMAL},
+      QC = #{qc,jdbcType=DECIMAL},
+      IA = #{ia,jdbcType=DECIMAL},
+      IB = #{ib,jdbcType=DECIMAL},
+      IC = #{ic,jdbcType=DECIMAL},
+      IZ = #{iz,jdbcType=DECIMAL},
+      UA = #{ua,jdbcType=DECIMAL},
+      UB = #{ub,jdbcType=DECIMAL},
+      UC = #{uc,jdbcType=DECIMAL},
+      PF = #{pf,jdbcType=DECIMAL},
+      PFA = #{pfa,jdbcType=DECIMAL},
+      PFB = #{pfb,jdbcType=DECIMAL},
+      PFC = #{pfc,jdbcType=DECIMAL},
+      OLDDATATIME = #{olddatatime,jdbcType=TIMESTAMP}
+    where DATATIME = #{datatime,jdbcType=TIMESTAMP}
+      and POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+  <!-- add -->
+  <!-- 查询最近一条电表历史记录 OPEN4-->
+  <select id="selectLastPowerSsl" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM dat_power_ssl  
+    WHERE POINTID = #{pointId}
+    ORDER BY DATATIME DESC
+    LIMIT 1
+  </select>
+</mapper>

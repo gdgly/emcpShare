@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.emcpshare.dao.ObjPointCommparamMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.emcpshare.model.ObjPointCommparam" >
+    <id column="POINTID" property="pointid" jdbcType="DECIMAL" />
+    <result column="RTUID" property="rtuid" jdbcType="DECIMAL" />
+    <result column="COMMADDR" property="commaddr" jdbcType="VARCHAR" />
+    <result column="PROTOCOLID" property="protocolid" jdbcType="DECIMAL" />
+    <result column="PWD" property="pwd" jdbcType="VARCHAR" />
+    <result column="COMMTYPEID" property="commtypeid" jdbcType="DECIMAL" />
+    <result column="NUMBERID" property="numberid" jdbcType="DECIMAL" />
+    <result column="SAMPLEINTERVAL" property="sampleinterval" jdbcType="VARCHAR" />
+    <result column="DISCONNECTMODE" property="disconnectmode" jdbcType="SMALLINT" />
+    <result column="SAFETYLEVEL" property="safetylevel" jdbcType="VARCHAR" />
+    <result column="SAFETYPWD" property="safetypwd" jdbcType="VARCHAR" />
+    <result column="POWERSTATUS" property="powerstatus" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    POINTID, RTUID, COMMADDR, PROTOCOLID, PWD, COMMTYPEID, NUMBERID, SAMPLEINTERVAL, 
+    DISCONNECTMODE, SAFETYLEVEL, SAFETYPWD, POWERSTATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.emcpshare.model.ObjPointCommparamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from obj_point_commparam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from obj_point_commparam
+    where POINTID = #{pointid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from obj_point_commparam
+    where POINTID = #{pointid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.emcpshare.model.ObjPointCommparamExample" >
+    delete from obj_point_commparam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.emcpshare.model.ObjPointCommparam" >
+    insert into obj_point_commparam (POINTID, RTUID, COMMADDR, 
+      PROTOCOLID, PWD, COMMTYPEID, 
+      NUMBERID, SAMPLEINTERVAL, DISCONNECTMODE, 
+      SAFETYLEVEL, SAFETYPWD, POWERSTATUS
+      )
+    values (#{pointid,jdbcType=DECIMAL}, #{rtuid,jdbcType=DECIMAL}, #{commaddr,jdbcType=VARCHAR}, 
+      #{protocolid,jdbcType=DECIMAL}, #{pwd,jdbcType=VARCHAR}, #{commtypeid,jdbcType=DECIMAL}, 
+      #{numberid,jdbcType=DECIMAL}, #{sampleinterval,jdbcType=VARCHAR}, #{disconnectmode,jdbcType=SMALLINT}, 
+      #{safetylevel,jdbcType=VARCHAR}, #{safetypwd,jdbcType=VARCHAR}, #{powerstatus,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.emcpshare.model.ObjPointCommparam" >
+    insert into obj_point_commparam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pointid != null" >
+        POINTID,
+      </if>
+      <if test="rtuid != null" >
+        RTUID,
+      </if>
+      <if test="commaddr != null" >
+        COMMADDR,
+      </if>
+      <if test="protocolid != null" >
+        PROTOCOLID,
+      </if>
+      <if test="pwd != null" >
+        PWD,
+      </if>
+      <if test="commtypeid != null" >
+        COMMTYPEID,
+      </if>
+      <if test="numberid != null" >
+        NUMBERID,
+      </if>
+      <if test="sampleinterval != null" >
+        SAMPLEINTERVAL,
+      </if>
+      <if test="disconnectmode != null" >
+        DISCONNECTMODE,
+      </if>
+      <if test="safetylevel != null" >
+        SAFETYLEVEL,
+      </if>
+      <if test="safetypwd != null" >
+        SAFETYPWD,
+      </if>
+      <if test="powerstatus != null" >
+        POWERSTATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pointid != null" >
+        #{pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="rtuid != null" >
+        #{rtuid,jdbcType=DECIMAL},
+      </if>
+      <if test="commaddr != null" >
+        #{commaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolid != null" >
+        #{protocolid,jdbcType=DECIMAL},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="commtypeid != null" >
+        #{commtypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="numberid != null" >
+        #{numberid,jdbcType=DECIMAL},
+      </if>
+      <if test="sampleinterval != null" >
+        #{sampleinterval,jdbcType=VARCHAR},
+      </if>
+      <if test="disconnectmode != null" >
+        #{disconnectmode,jdbcType=SMALLINT},
+      </if>
+      <if test="safetylevel != null" >
+        #{safetylevel,jdbcType=VARCHAR},
+      </if>
+      <if test="safetypwd != null" >
+        #{safetypwd,jdbcType=VARCHAR},
+      </if>
+      <if test="powerstatus != null" >
+        #{powerstatus,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.emcpshare.model.ObjPointCommparamExample" resultType="java.lang.Integer" >
+    select count(*) from obj_point_commparam
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update obj_point_commparam
+    <set >
+      <if test="record.pointid != null" >
+        POINTID = #{record.pointid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rtuid != null" >
+        RTUID = #{record.rtuid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commaddr != null" >
+        COMMADDR = #{record.commaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protocolid != null" >
+        PROTOCOLID = #{record.protocolid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pwd != null" >
+        PWD = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commtypeid != null" >
+        COMMTYPEID = #{record.commtypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.numberid != null" >
+        NUMBERID = #{record.numberid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sampleinterval != null" >
+        SAMPLEINTERVAL = #{record.sampleinterval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.disconnectmode != null" >
+        DISCONNECTMODE = #{record.disconnectmode,jdbcType=SMALLINT},
+      </if>
+      <if test="record.safetylevel != null" >
+        SAFETYLEVEL = #{record.safetylevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.safetypwd != null" >
+        SAFETYPWD = #{record.safetypwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerstatus != null" >
+        POWERSTATUS = #{record.powerstatus,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update obj_point_commparam
+    set POINTID = #{record.pointid,jdbcType=DECIMAL},
+      RTUID = #{record.rtuid,jdbcType=DECIMAL},
+      COMMADDR = #{record.commaddr,jdbcType=VARCHAR},
+      PROTOCOLID = #{record.protocolid,jdbcType=DECIMAL},
+      PWD = #{record.pwd,jdbcType=VARCHAR},
+      COMMTYPEID = #{record.commtypeid,jdbcType=DECIMAL},
+      NUMBERID = #{record.numberid,jdbcType=DECIMAL},
+      SAMPLEINTERVAL = #{record.sampleinterval,jdbcType=VARCHAR},
+      DISCONNECTMODE = #{record.disconnectmode,jdbcType=SMALLINT},
+      SAFETYLEVEL = #{record.safetylevel,jdbcType=VARCHAR},
+      SAFETYPWD = #{record.safetypwd,jdbcType=VARCHAR},
+      POWERSTATUS = #{record.powerstatus,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.emcpshare.model.ObjPointCommparam" >
+    update obj_point_commparam
+    <set >
+      <if test="rtuid != null" >
+        RTUID = #{rtuid,jdbcType=DECIMAL},
+      </if>
+      <if test="commaddr != null" >
+        COMMADDR = #{commaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolid != null" >
+        PROTOCOLID = #{protocolid,jdbcType=DECIMAL},
+      </if>
+      <if test="pwd != null" >
+        PWD = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="commtypeid != null" >
+        COMMTYPEID = #{commtypeid,jdbcType=DECIMAL},
+      </if>
+      <if test="numberid != null" >
+        NUMBERID = #{numberid,jdbcType=DECIMAL},
+      </if>
+      <if test="sampleinterval != null" >
+        SAMPLEINTERVAL = #{sampleinterval,jdbcType=VARCHAR},
+      </if>
+      <if test="disconnectmode != null" >
+        DISCONNECTMODE = #{disconnectmode,jdbcType=SMALLINT},
+      </if>
+      <if test="safetylevel != null" >
+        SAFETYLEVEL = #{safetylevel,jdbcType=VARCHAR},
+      </if>
+      <if test="safetypwd != null" >
+        SAFETYPWD = #{safetypwd,jdbcType=VARCHAR},
+      </if>
+      <if test="powerstatus != null" >
+        POWERSTATUS = #{powerstatus,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.emcpshare.model.ObjPointCommparam" >
+    update obj_point_commparam
+    set RTUID = #{rtuid,jdbcType=DECIMAL},
+      COMMADDR = #{commaddr,jdbcType=VARCHAR},
+      PROTOCOLID = #{protocolid,jdbcType=DECIMAL},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      COMMTYPEID = #{commtypeid,jdbcType=DECIMAL},
+      NUMBERID = #{numberid,jdbcType=DECIMAL},
+      SAMPLEINTERVAL = #{sampleinterval,jdbcType=VARCHAR},
+      DISCONNECTMODE = #{disconnectmode,jdbcType=SMALLINT},
+      SAFETYLEVEL = #{safetylevel,jdbcType=VARCHAR},
+      SAFETYPWD = #{safetypwd,jdbcType=VARCHAR},
+      POWERSTATUS = #{powerstatus,jdbcType=SMALLINT}
+    where POINTID = #{pointid,jdbcType=DECIMAL}
+  </update>
+</mapper>
